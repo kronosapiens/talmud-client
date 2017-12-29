@@ -47,7 +47,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 
   .net {
     height:100%;

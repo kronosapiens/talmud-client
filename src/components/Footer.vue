@@ -20,7 +20,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   html {
     position: relative;
     min-height: 100%;
