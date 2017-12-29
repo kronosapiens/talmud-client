@@ -4,25 +4,21 @@
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-    <b-navbar-brand href="#">{{ title }}</b-navbar-brand>
+    <b-navbar-brand v-on:click="navClick">Talmud</b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav v-for="item in items" :key="item.name">
-        <b-nav-item href="#">{{ item.name }}</b-nav-item>
+        <b-nav-item v-on:click="navClick">
+          {{ item.name }}
+        </b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        
-        <b-nav-item-dropdown right>
-          <!-- Using button-content slot -->
-          <template slot="button-content">
-            <em>User</em>
-          </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Signout</b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-navbar-nav right>
+          <b-nav-item v-on:click="navClick">Login</b-nav-item>
+        </b-navbar-nav>
       </b-navbar-nav>
 
     </b-collapse>
@@ -36,12 +32,16 @@
     name: 'navbar',
     data () {
       return {
-        title: 'Talmud',
         items: [
           { name: 'Explore' },
-          { name: 'Contribute' },
           { name: 'Vote' }
         ]
+      }
+    },
+    methods: {
+      navClick (event) {
+        let view = event.srcElement.innerText.toLowerCase()
+        this.$emit('navClick', view)
       }
     }
   }

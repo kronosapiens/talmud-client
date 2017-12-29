@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <Navbar/>
 
-    <h1>{{ msg }}</h1>
+    <Navbar v-on:navClick="changeView"></Navbar>
 
-    <b-row v-if="explore">
+    <b-row v-if="view == 'talmud'">
+      <b-col cols="12">
+        <h1>{{ msg }}</h1>
+      </b-col>
+    </b-row>
+
+    <b-row v-if="view == 'explore'">
       <b-col cols="8">
         <Graph/>
       </b-col>
@@ -13,7 +18,7 @@
       </b-col>
     </b-row>
 
-    <b-row v-if="!explore">
+    <b-row v-if="view == 'vote'">
       <b-col cols="12">
         <Voter/>
       </b-col>
@@ -44,7 +49,12 @@
     data () {
       return {
         msg: 'Welcome to Talmud!',
-        explore: false,
+        view: 'talmud',
+      }
+    },
+    methods: {
+      changeView (view) {
+        this.view = view
       }
     }
   }

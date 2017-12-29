@@ -47,7 +47,8 @@
   }
 </script>
 
-<style scoped>
+<!-- <style scoped>  TODO: Breaks graph, fix. -->
+<style>
 
   .net {
     height:100%;
@@ -116,4 +117,5 @@
   #arrowhead path{
     fill: rgba(18, 120, 98, 0.8);
   }
+
 </style>
