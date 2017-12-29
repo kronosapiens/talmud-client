@@ -11,7 +11,10 @@
     "serve": "python -m SimpleHTTPServer"
   },
   "dependencies": {
-    "vue": "^2.5.11"
+    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap-vue": "^1.4.0",
+    "vue": "^2.5.11",
+    "vue-d3-network": "^0.1.24"
   },
   "browserslist": [
     "> 1%",
