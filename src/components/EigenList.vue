@@ -1,16 +1,13 @@
 <template>
-
-  <b-table striped hover :items="identities"></b-table>
-
+  <div>
+    <h2>{{ title }}</h2>
+    <b-table striped hover :items="identities"></b-table>
+  </div>
 </template>
 
 <script>
 
-  function unpackIdentities(identities) {
-    return identities.map(identity => {
-      return {name: identity.name, weight: 10 - identity.id}
-    })
-  }
+  import { fetchIdentities } from '../services/server'
 
   export default {
     name: 'eigen-list',
@@ -20,13 +17,7 @@
         identities: []
       }
     },
-    created () {
-      fetch('http://localhost:3000/identities')
-        .then(response => response.json())
-        .then(identities => {
-          this.identities = unpackIdentities(identities)
-        })
-    }
+    created () { fetchIdentities(this) }
   }
 </script>
 

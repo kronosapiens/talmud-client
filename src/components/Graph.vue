@@ -1,7 +1,10 @@
 <template>
   <div>
+    <h2>{{ title }}</h2>
 
-    <svg>
+    <d3-network ref='net' :net-nodes="nodes" :net-links="links" :options="options" :link-cb="lcb"/>
+
+    <svg width="0" height="0">
       <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="2" orient="auto" markerUnits="strokeWidth" >
           <path d="M0,0 L0,4 L4,2 z"></path>
@@ -9,24 +12,18 @@
       </defs>
     </svg>
 
-    <d3-network ref='net' :net-nodes="nodes" :net-links="links" :options="options" :link-cb="lcb"/>
-
   </div>
 </template>
 
 <script>
   import D3Network from 'vue-d3-network'
+  import { fetchPreferences } from '../services/server'
 
-  function unpackLinks(preferences) {
-    return preferences.map(p =>
-      p.winner ? { sid: p.a_id, tid: p.b_id } : { sid: p.b_id, tid: p.a_id }
-      )
-  }
-
-  function unpackNodes(preferences) {
-    const nodeSet = new Set()
-    preferences.forEach(p => { nodeSet.add(p.a_id); nodeSet.add(p.b_id) })
-    return Array.from(nodeSet).map(x => { return { id: x } })
+  const graphOptions = {
+    force: 3000,
+    nodeSize: 20,
+    nodeLabels: true,
+    linkWidth:5
   }
 
   export default {
@@ -43,25 +40,10 @@
         title: 'Graph',
         nodes: [],
         links: [],
-        options:
-        {
-          force: 3000,
-          nodeSize: 20,
-          nodeLabels: true,
-          linkWidth:5
-        }
+        options: graphOptions
       }
     },
-    created () {
-      fetch('http://localhost:3000/preferences')
-      .then(response => response.json())
-      .then(preferences => {
-        this.nodes = unpackNodes(preferences)
-        this.links = unpackLinks(preferences)
-        console.log(this.nodes)
-        console.log(this.links)
-      })
-    }
+    created () { fetchPreferences(this) }
   }
 </script>
 
@@ -116,21 +98,6 @@
     -ms-transform:translateY(-.5em);
     transform:translateY(-.5em);
     text-anchor:middle
-  }
-
-  canvas {
-    position:absolute;top:0;
-    left:0
-  }
-
-  body {
-    font-family: 'PT Sans', sans-serif;
-    background-color: #eee;
-  }
-
-  h1,a {
-    color: #1aad8d;
-    text-decoration: none;
   }
 
   ul.menu {

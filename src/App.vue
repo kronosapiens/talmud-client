@@ -1,17 +1,23 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app">
     <Navbar/>
 
     <h1>{{ msg }}</h1>
 
-    <div class="row">
-      <div class="col-8">
+    <b-row v-if="explore">
+      <b-col cols="8">
         <Graph/>
-      </div>
-      <div class="col-4">
+      </b-col>
+      <b-col cols="4">
         <EigenList/>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
+
+    <b-row v-if="!explore">
+      <b-col cols="12">
+        <Voter/>
+      </b-col>
+    </b-row>
 
     <Footer/>
 
@@ -24,6 +30,7 @@
   import Footer from './components/Footer.vue'
   import EigenList from './components/EigenList.vue'
   import Graph from './components/Graph.vue'
+  import Voter from './components/Voter.vue'
 
   export default {
     name: 'app',
@@ -31,11 +38,13 @@
       Navbar,
       Footer,
       EigenList,
-      Graph
+      Graph,
+      Voter,
     },
     data () {
       return {
         msg: 'Welcome to Talmud!',
+        explore: false,
       }
     }
   }
@@ -48,6 +57,15 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+  }
+
+  div {
+    border:1px solid grey
+  }
+
+  h1,a {
+    color: #1aad8d;
+    text-decoration: none;
   }
 
   h1, h2 {
