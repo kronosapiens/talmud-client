@@ -17,7 +17,7 @@ function fetchPreferences (that) {
 
 function unpackIdentities(identities) {
   return identities.map(identity => {
-    return {name: identity.name, weight: 10 - identity.id}
+    return {id: identity.id, name: identity.name, value: identity.id}
   })
 }
 
@@ -33,4 +33,19 @@ function unpackNodes(preferences) {
   return Array.from(nodeSet).map(x => { return { id: x } })
 }
 
-export { fetchIdentities, fetchPreferences }
+function savePreference(winner, loser) {
+  let params = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ winner: winner, loser: loser })
+  }
+  fetch('http://localhost:3000/preferences', params)
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
+
+export {
+  fetchIdentities,
+  fetchPreferences,
+  savePreference
+}

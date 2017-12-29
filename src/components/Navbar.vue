@@ -38,7 +38,7 @@
         ]
       }
     },
-    methods: {
+    methods: { // Could also use v-on:click="$emit('navClick', item.name)"
       navClick (event) {
         let view = event.srcElement.innerText.toLowerCase()
         this.$emit('navClick', view)

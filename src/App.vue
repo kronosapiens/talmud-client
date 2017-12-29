@@ -49,12 +49,12 @@
     data () {
       return {
         msg: 'Welcome to Talmud!',
-        view: 'talmud',
+        view: 'vote',
       }
     },
     methods: {
       changeView (view) {
-        this.view = view
+        this.view = view.toLowerCase()
       }
     }
   }
