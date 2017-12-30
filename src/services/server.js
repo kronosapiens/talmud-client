@@ -1,12 +1,37 @@
-function fetchIdentities () {
-  return fetch('http://localhost:3000/identities')
+// General Utilities
+
+const urlRoot = 'http://localhost:3000/'
+
+function makePostParams (dataObject) {
+  return {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dataObject)
+  }
+}
+
+function getJsonP (path) {
+  console.log('getting ' + path)
+  return fetch(urlRoot + path)
   .then(response => response.json())
+}
+
+function postJsonP (path, dataObject) {
+  console.log('posting ' + path + ' with ' + JSON.stringify(dataObject))
+  let params = makePostParams(dataObject)
+  return fetch(urlRoot + path, params)
+  .then(response => response.json())
+}
+
+// Identity and Preference Methods
+
+function fetchIdentities () {
+  return getJsonP('identities')
   .then(identities => unpackIdentities(identities))
 }
 
 function fetchPreferences () {
-  return fetch('http://localhost:3000/preferences')
-  .then(response => response.json())
+  return getJsonP('preferences')
   .then(preferences => {
     return {
       nodes: unpackNodes(preferences),
@@ -33,19 +58,27 @@ function unpackNodes(preferences) {
   return Array.from(nodeSet).map(x => { return { id: x } })
 }
 
-function savePreference(winner, loser) {
-  let params = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ winner: winner, loser: loser })
-  }
-  fetch('http://localhost:3000/preferences', params)
-    .then(response => response.json())
+function submitPreference(winner, loser) {
+  return postJsonP('preferences', { winner: winner, loser: loser })
+    .then(data => console.log(data))
+}
+
+// Registration and Login Methods
+
+function submitRegistration(form) {
+  return postJsonP('register', form)
+    .then(data => console.log(data))
+}
+
+function submitLogin(form) {
+  return postJsonP('login', form)
     .then(data => console.log(data))
 }
 
 export {
   fetchIdentities,
   fetchPreferences,
-  savePreference
+  submitPreference,
+  submitRegistration,
+  submitLogin
 }

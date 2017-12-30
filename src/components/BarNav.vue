@@ -17,7 +17,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
-          <b-nav-item v-on:click="navClick">Login</b-nav-item>
+          <b-nav-item v-on:click="navClick">{{ userAction }}</b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
 
@@ -35,7 +35,8 @@
         items: [
           { name: 'Explore' },
           { name: 'Vote' }
-        ]
+        ],
+        userAction: 'Login'
       }
     },
     methods: { // Could also use v-on:click="$emit('navClick', item.name)"

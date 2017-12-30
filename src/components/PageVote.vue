@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import { fetchIdentities, savePreference } from '../services/server'
+  import { fetchIdentities, submitPreference } from '../services/server'
 
   export default {
     name: 'voter',
@@ -68,7 +68,7 @@
       submitPreference: function () {
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
-        savePreference(winner.id, loser.id)
+        submitPreference(winner.id, loser.id)
         this.winner = this.loser = ''
       }
     },
