@@ -1,17 +1,17 @@
-function fetchIdentities (that) {
-  fetch('http://localhost:3000/identities')
+function fetchIdentities () {
+  return fetch('http://localhost:3000/identities')
   .then(response => response.json())
-  .then(identities => {
-    that.identities = unpackIdentities(identities)
-  })
+  .then(identities => unpackIdentities(identities))
 }
 
-function fetchPreferences (that) {
-  fetch('http://localhost:3000/preferences')
+function fetchPreferences () {
+  return fetch('http://localhost:3000/preferences')
   .then(response => response.json())
   .then(preferences => {
-    that.nodes = unpackNodes(preferences)
-    that.links = unpackLinks(preferences)
+    return {
+      nodes: unpackNodes(preferences),
+      links: unpackLinks(preferences)
+    }
   })
 }
 

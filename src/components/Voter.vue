@@ -72,7 +72,10 @@
         this.winner = this.loser = ''
       }
     },
-    created () { fetchIdentities(this) }
+    created () {
+      fetchIdentities()
+        .then(identities => this.identities = identities)
+     }
   }
 
 </script>

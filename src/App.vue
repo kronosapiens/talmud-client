@@ -3,26 +3,17 @@
 
     <Navbar v-on:navClick="changeView"></Navbar>
 
-    <b-row v-if="view == 'talmud'">
-      <b-col cols="12">
-        <h1>{{ msg }}</h1>
-      </b-col>
-    </b-row>
+    <div v-if="view == 'talmud'">
+      <h1>{{ msg }}</h1>
+    </div>
 
-    <b-row v-if="view == 'explore'">
-      <b-col cols="8">
-        <Graph/>
-      </b-col>
-      <b-col cols="4">
-        <EigenList/>
-      </b-col>
-    </b-row>
+    <div v-if="view == 'explore'">
+      <Explore/>
+    </div>
 
-    <b-row v-if="view == 'vote'">
-      <b-col cols="12">
-        <Voter/>
-      </b-col>
-    </b-row>
+    <div v-if="view == 'vote'">
+      <Voter/>
+    </div>
 
     <Footer/>
 
@@ -33,8 +24,7 @@
 
   import Navbar from './components/Navbar.vue'
   import Footer from './components/Footer.vue'
-  import EigenList from './components/EigenList.vue'
-  import Graph from './components/Graph.vue'
+  import Explore from './components/Explore.vue'
   import Voter from './components/Voter.vue'
 
   export default {
@@ -42,14 +32,13 @@
     components: {
       Navbar,
       Footer,
-      EigenList,
-      Graph,
+      Explore,
       Voter,
     },
     data () {
       return {
         msg: 'Welcome to Talmud!',
-        view: 'vote',
+        view: 'explore',
       }
     },
     methods: {
