@@ -28,6 +28,7 @@
 
 <script>
 
+  import { setLogin } from '../services/utils'
   import { submitLogin } from '../services/server'
 
   const countries = require('country-data').countries
@@ -45,8 +46,14 @@
     },
     methods: {
       onSubmit (event) {
-        event.preventDefault();
-        alert(JSON.stringify(this.form));
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+        submitLogin(this.form)
+          .then(data => {
+            console.log(data)
+            setLogin(data.loggedIn)
+            window.location.href = '/vote'
+          })
       }
     }
   }

@@ -8,8 +8,11 @@ Vue.use(BootstrapVue)
 
 import App from './App.vue'
 
-const app = new Vue({
+new Vue({
   el: '#app',
-  template: '<App/>',
+  template: '<App v-bind:route="route"></App>',
+  data: {
+    route: window.location.pathname
+  },
   components: { App }
 })

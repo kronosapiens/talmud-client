@@ -1,30 +1,30 @@
 <template>
   <div id="app">
 
-    <BarNav v-on:navClick="changeView"></BarNav>
+    <BarNav/>
 
-    <div v-if="view == 'talmud'">
-      <h1>{{ msg }}</h1>
-      <br>
-      <p>
-        “Golda, you must remember that first I am an American, second I am Secretary Of State, and third I am a Jew.”
-      </p><br>
-      <p>
-        “Henry, you forget that in Israel we read from right to left.”
-      </p>
+    <b-alert show>{{ alert }}</b-alert>
+
+    <div v-if="route == '/'">
+      <PageSplash/>
     </div>
 
-    <div v-if="view == 'explore'">
+    <div v-else-if="route == '/explore'">
       <PageExplore/>
     </div>
 
-    <div v-if="view == 'vote'">
+    <div v-else-if="route == '/vote'">
       <PageVote/>
     </div>
 
-    <div v-if="view == 'login'">
+    <div v-else-if="route == '/login'">
       <PageUser/>
     </div>
+
+    <div v-else>
+      <h1>404</h1>
+    </div>
+
 
     <BarFooter/>
 
@@ -38,25 +38,25 @@
   import PageExplore from './components/PageExplore.vue'
   import PageVote from './components/PageVote.vue'
   import PageUser from './components/PageUser.vue'
+  import PageSplash from './components/PageSplash.vue'
+
+  import { getLogin } from './services/utils'
 
   export default {
     name: 'app',
+    props: ['route'],
     components: {
       BarNav,
       BarFooter,
       PageExplore,
       PageVote,
       PageUser,
+      PageSplash,
     },
     data () {
       return {
-        msg: 'Welcome to Talmud!',
-        view: 'login',
-      }
-    },
-    methods: {
-      changeView (view) {
-        this.view = view.toLowerCase()
+        loggedIn: getLogin(),
+        alert: getLogin()
       }
     }
   }

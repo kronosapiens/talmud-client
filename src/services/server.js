@@ -10,17 +10,23 @@ function makePostParams (dataObject) {
   }
 }
 
+function parse(response) {
+  let data = response.json()
+  console.log(data)
+  return data
+}
+
 function getJsonP (path) {
   console.log('getting ' + path)
   return fetch(urlRoot + path)
-  .then(response => response.json())
+  .then(response => parse(response))
 }
 
 function postJsonP (path, dataObject) {
   console.log('posting ' + path + ' with ' + JSON.stringify(dataObject))
   let params = makePostParams(dataObject)
   return fetch(urlRoot + path, params)
-  .then(response => response.json())
+  .then(response => parse(response))
 }
 
 // Identity and Preference Methods
@@ -60,19 +66,20 @@ function unpackNodes(preferences) {
 
 function submitPreference(winner, loser) {
   return postJsonP('preferences', { winner: winner, loser: loser })
-    .then(data => console.log(data))
 }
 
 // Registration and Login Methods
 
 function submitRegistration(form) {
   return postJsonP('register', form)
-    .then(data => console.log(data))
 }
 
 function submitLogin(form) {
   return postJsonP('login', form)
-    .then(data => console.log(data))
+}
+
+function fetchLogout() {
+  return getJsonP('logout')
 }
 
 export {
@@ -80,5 +87,6 @@ export {
   fetchPreferences,
   submitPreference,
   submitRegistration,
-  submitLogin
+  submitLogin,
+  fetchLogout
 }

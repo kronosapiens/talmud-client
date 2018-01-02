@@ -37,11 +37,11 @@
 </b-form-group>
 
 <b-form-group label="Country">
-  <b-form-select v-model="form.country" :options="countries" required>
+  <b-form-select v-model="form.cc" :options="countries" required>
   </b-form-select>
 </b-form-group>
 
-<b-form-group label="Zip Code" v-if="form.country == 'US'">
+<b-form-group label="Zip Code" v-if="form.cc == 'US'">
   <b-form-input type="number"
   v-model="form.zip"
   placeholder="For US residents, enter your ZIP">
@@ -69,7 +69,7 @@
           email: '',
           password: '',
           passwordConfirm: '',
-          country: '',
+          cc: '',
           zip: '',
           regCode: '',
         },
