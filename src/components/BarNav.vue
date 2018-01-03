@@ -17,7 +17,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
-          <b-nav-item v-if="!getLogin()" href="login">login</b-nav-item>
+          <b-nav-item v-if="!isLoggedIn()" href="login">login</b-nav-item>
           <b-nav-item v-else v-on:click="handleLogout()">logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
@@ -30,8 +30,7 @@
 
 <script>
 
-  import { setLogin, getLogin } from '../services/utils'
-  import { fetchLogout } from '../services/server'
+  import { fetchLogout, getJwt, setJwt } from '../services/server'
 
   export default {
     name: 'navbar',
@@ -44,16 +43,12 @@
       }
     },
     methods: {
-      getLogin () {
-        return getLogin()
+      isLoggedIn () {
+        return Boolean(getJwt())
       },
       handleLogout () {
-        return fetchLogout()
-          .then(data => {
-            console.log(data)
-            setLogin(data.loggedIn)
-            window.location.href = '/login'
-          })
+        setJwt('')
+        window.location.href = '/login'
       }
     }
   }

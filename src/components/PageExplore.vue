@@ -87,7 +87,7 @@
 
           this.links = links
           this.nodes = eigenlist
-          this.identities = JSON.parse(JSON.stringify(eigenlist)) // Poor man's deep copy
+          this.identities = JSON.parse(JSON.stringify(eigenlist)).slice(0, 10) // Poor man's deep copy
         })
       })
     }

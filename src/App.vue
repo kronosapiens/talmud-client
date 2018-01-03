@@ -40,7 +40,7 @@
   import PageUser from './components/PageUser.vue'
   import PageSplash from './components/PageSplash.vue'
 
-  import { getLogin } from './services/utils'
+  import { getJwt } from './services/server'
 
   export default {
     name: 'app',
@@ -55,8 +55,7 @@
     },
     data () {
       return {
-        loggedIn: getLogin(),
-        alert: getLogin()
+        alert: 'Jwt: ' + getJwt()
       }
     }
   }

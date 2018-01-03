@@ -16,7 +16,7 @@ function sumColumns(matrix) {
   return matrix.trans().data.map(col => sum(col))
 }
 
-function toIdentitySet(preferenceArray) { // [{a_id, b_id, winner}]
+function toIdentitySet(preferenceArray) { // [{alpha_id, beta_id, win_bit}]
   const idArray = preferenceArray.flatMap(p => [p.sid, p.tid])
   return new Set(idArray)
 }
@@ -30,7 +30,7 @@ function toIdentityMap(preferenceArray) {
   )
 }
 
-function toMatrix(preferenceArray) { // [{a_id, b_id, winner}]
+function toMatrix(preferenceArray) { // [{alpha_id, beta_id, win_bit}]
   const idMap = toIdentityMap(preferenceArray)
   const n = idMap.size
   const matrix = linAlg.Matrix.zero(n, n)

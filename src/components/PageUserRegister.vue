@@ -84,8 +84,8 @@
         if (this.form.password != this.form.passwordConfirm) {
           alert('Passwords must match!')
         } else {
-          alert(JSON.stringify(this.form))
           submitRegistration(this.form)
+          window.location.href = '/'
         }
       }
     }
