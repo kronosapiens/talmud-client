@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 // Browser storage
 
 function setJwt(jwt) {
@@ -13,30 +15,27 @@ function getJwt() {
 
 const urlRoot = 'http://localhost:3000/'
 
-function makePostParams (dataObject) {
+function getHeader () {
   return {
-    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + getJwt()
-    },
-    body: JSON.stringify(dataObject)
+    }
   }
 }
 
 function getJsonP (path) {
   console.log('getting ' + path)
-  return fetch(urlRoot + path)
-    .then(response => response.json())
-    .then(data => { console.log(data); return data })
+  return axios.get(urlRoot + path)
+    .catch(error => { console.log(error); return error })
+    .then(res => { console.log(res); return res.data })
 }
 
-function postJsonP (path, dataObject) {
-  console.log('posting ' + path + ' with ' + JSON.stringify(dataObject))
-  let params = makePostParams(dataObject)
-  return fetch(urlRoot + path, params)
-    .then(response => response.json())
-    .then(data => { console.log(data); return data })
+function postJsonP (path, data) {
+  console.log('posting ' + path + ' with ' + JSON.stringify(data))
+  return axios.post(urlRoot + path, data, getHeader())
+    .catch(error => {console.log(error); return error })
+    .then(res => { console.log(res); return res.data })
 }
 
 // Identity and Preference Methods
