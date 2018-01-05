@@ -1,14 +1,19 @@
 const axios = require('axios')
+const jsonwebtoken = require('jsonwebtoken')
 
 // Browser storage
 
-function setJwt(jwt) {
+function setJwt (jwt) {
   let jwtStr = jwt ? jwt : '' // Deal with null and undefined
   return sessionStorage.setItem('jwt', jwtStr)
 }
 
-function getJwt() {
+function getJwt () {
   return sessionStorage.getItem('jwt')
+}
+
+function getUser () {
+  return jsonwebtoken.decode(getJwt())
 }
 
 // General Utilities
@@ -62,9 +67,16 @@ function unpackIdentities(identities) {
 }
 
 function unpackLinks(preferences) {
-  return preferences.map(p =>
-    p.win_bit ? { sid: p.alpha_id, tid: p.beta_id } : { sid: p.beta_id, tid: p.alpha_id }
-    )
+  return preferences.map(p => {
+    let [sid, tid] = p.win_bit ? [p.alpha_id, p.beta_id] : [p.beta_id, p.alpha_id]
+    return {
+      sid: sid,
+      tid: tid,
+      uid: p.user_id,
+      cc: p.cc,
+      zip: p.zip
+    }
+  })
 }
 
 function unpackNodes(preferences) {
@@ -94,5 +106,6 @@ export {
   submitRegistration,
   submitLogin,
   getJwt,
-  setJwt
+  setJwt,
+  getUser
 }

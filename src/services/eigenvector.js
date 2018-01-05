@@ -47,19 +47,26 @@ function toMatrix(preferenceArray) { // [{alpha_id, beta_id, win_bit}]
   return matrix
 }
 
-function powerMethod(matrix, epsilon = 0.001, nIter = 1000) {
+function powerMethod(matrix, d = 1, epsilon = 0.001, nIter = 1000) {
   console.assert(matrix.rows == matrix.cols, 'Matrix must be square!')
   const n = matrix.rows
 
+  // Normalize matrix
   matrix.data = matrix.data
     .map(row => {
       let rowSum = sum(row)
       return row.map(x => x / rowSum)
     })
 
+  // Add damping factor
+  matrix.mulEach_(d)
+  matrix.plusEach_((1 - d) / n)
+
+  // Initialize eigenvector to uniform distribution
   var eigenvector = linAlg.Vector.zero(n)
     .plusEach(1.0 / n)
 
+  // Power method
   var prev = eigenvector
   for (var i = 0; i < nIter; i++) {
     eigenvector = prev.dot(matrix)

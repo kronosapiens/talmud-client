@@ -2,7 +2,7 @@
 
   <footer class="sticky-footer">
     <div class="container text-muted">
-      &nabla; <b-link v-bind:href="url">kronosapiens</b-link> {{ year }}
+        &nabla; <b-link v-bind:href="url">kronosapiens</b-link> {{ year }}
     </div>
   </footer>
 
@@ -21,14 +21,12 @@
 </script>
 
 <style scoped>
-  html {
-    position: relative;
-    min-height: 100%;
-  }
+
   body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
   }
+
   .sticky-footer {
     position: absolute;
     bottom: 0;

@@ -13,8 +13,12 @@
       <PageExplore/>
     </div>
 
-    <div v-else-if="route == '/vote'">
-      <PageVote/>
+    <div v-else-if="route == '/play'">
+      <PagePlay/>
+    </div>
+
+    <div v-else-if="route == '/about'">
+      <PageAbout/>
     </div>
 
     <div v-else-if="route == '/login'">
@@ -35,8 +39,9 @@
 
   import BarNav from './components/BarNav.vue'
   import BarFooter from './components/BarFooter.vue'
+  import PageAbout from './components/PageAbout.vue'
   import PageExplore from './components/PageExplore.vue'
-  import PageVote from './components/PageVote.vue'
+  import PagePlay from './components/PagePlay.vue'
   import PageUser from './components/PageUser.vue'
   import PageSplash from './components/PageSplash.vue'
 
@@ -48,8 +53,9 @@
     components: {
       BarNav,
       BarFooter,
+      PageAbout,
       PageExplore,
-      PageVote,
+      PagePlay,
       PageUser,
       PageSplash,
     },
@@ -64,6 +70,11 @@
 <style>
   div {
     border:1px solid grey
+  }
+
+  html {
+    position: relative;
+    min-height: 100%;
   }
 
   #app {

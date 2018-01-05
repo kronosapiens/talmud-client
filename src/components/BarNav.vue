@@ -36,9 +36,11 @@
     name: 'navbar',
     data () {
       return {
+        title: 'Navbar',
         items: [
+          { name: 'play' },
           { name: 'explore' },
-          { name: 'vote' }
+          { name: 'about' },
         ]
       }
     },

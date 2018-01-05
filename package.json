@@ -16,6 +16,7 @@
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "^1.4.0",
     "country-data": "0.0.31",
+    "jsonwebtoken": "^8.1.0",
     "linear-algebra": "^3.1.4",
     "vue": "^2.5.11",
     "vue-d3-network": "^0.1.24"

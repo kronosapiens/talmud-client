@@ -49,7 +49,7 @@
         submitLogin(this.form)
           .then(data => {
             setJwt(data.jwt)
-            window.location.href = '/vote'
+            window.location.href = '/play'
           })
       }
     }

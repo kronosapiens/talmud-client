@@ -3,8 +3,18 @@
     <h2>{{ title }}</h2>
 
     <b-row>
+      <b-col></b-col>
 
-      <b-col cols="6">
+      <b-col sm="4">
+        <b-btn
+          variant="outline-success"
+          size="lg"
+          v-for="identity in identities"
+          v-bind:key="identity.name"
+          v-on:click="handleClick">{{ identity.name }}</b-btn>
+      </b-col>
+
+      <b-col sm="4">
         <h3> I am a </h3>
         <br>
         <b-btn
@@ -22,25 +32,27 @@
         <h3> second. </h3>
       </b-col>
 
-      <b-col cols="6">
+      <b-col></b-col>
+    </b-row>
+
+    <b-row>
+
+      <b-col></b-col>
+
+      <b-col sm="6">
         <b-btn
-          variant="outline-success"
-          size="lg"
-          v-for="identity in identities"
-          v-bind:key="identity.name"
-          v-on:click="handleClick">{{ identity.name }}</b-btn>
+        variant="info"
+        size="lg"
+        v-on:click="submitPreference">Submit</b-btn>
       </b-col>
 
-      <b-col cols="12">
-        <b-btn
-          variant="primary"
-          size="lg"
-          v-on:click="submitPreference">Submit</b-btn>
-      </b-col>
+      <b-col></b-col>
 
     </b-row>
 
-  </div>
+  </b-row>
+
+</div>
 
 </template>
 
@@ -48,10 +60,10 @@
   import { fetchIdentities, submitPreference } from '../services/server'
 
   export default {
-    name: 'voter',
+    name: 'player',
     data () {
       return {
-        title: 'Voter',
+        title: 'Player',
         identities: [],
         winner: '',
         loser: '',

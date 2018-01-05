@@ -22,7 +22,7 @@
 
 <script>
   export default {
-    name: 'pageSplash',
+    name: 'page-splash',
     data () {
       return {
         title: 'PageSplash',
