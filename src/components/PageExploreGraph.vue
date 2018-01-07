@@ -13,8 +13,8 @@
     <b-form-select
       class="mb-3"
       v-model="dropdownSelected"
-      v-bind:options="dropdownOptions()"
-      v-bind:style="dropdownStyle()"
+      v-bind:options="dropdownOptions"
+      v-bind:style="dropdownStyle"
       >
     </b-form-select>
 
@@ -59,7 +59,9 @@
 </template>
 
 <script>
-  import D3Network from 'vue-d3-network'
+  import d3Network from 'vue-d3-network'
+  import zipcodes from 'zipcodes'
+
   import { fetchIdentities, fetchPreferences, getJwt, getUser } from '../services/server'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
@@ -71,8 +73,8 @@
   }
 
   export default {
-    name: 'Explore Graph',
-    components: { D3Network },
+    name: 'explore-graph',
+    components: { d3Network },
     data () {
       return {
         title: 'exploreGraph',
@@ -93,23 +95,48 @@
         graphOptions: graphOptions
       }
     },
-    watch: {
-      exploreSelected: function () {
-        this.render()
-      }
-    },
-    methods: {
+    computed: {
       dropdownStyle: function () {
-        if (['country', 'city'].includes(this.exploreSelected)) {
-          return {}
-        } else {
+        if (!['country', 'city'].includes(this.exploreSelected)) {
           return { visibility: 'hidden'}
+        } else {
+          return {}
         }
       },
       dropdownOptions: function () {
-        return ['banana', 'apple']
+        if (this.exploreSelected == 'country') {
+          var options = this.allLinks.map(link => link.cc)
+        } else if (this.exploreSelected == 'city') {
+          var options = this.zipMap.keys()
+        } else {
+          var options = []
+        }
+        return Array.from(new Set(options))
       },
-      render: function () {
+      zipMap: function () {
+        const zipMap = new Map()
+        this.allLinks.map(link => {
+          let zip = link.zip
+          if (zip) {
+            let city = zipcodes.lookup(zip).city
+            zipMap.set(city, zip)
+          }
+        })
+        return zipMap
+      }
+    },
+    watch: {
+      exploreSelected: function () {
+        if (['me', 'world'].includes(this.exploreSelected)) {
+          this.renderGraph()
+        }
+      },
+      dropdownSelected: function () {
+        this.renderGraph()
+      }
+    },
+    methods: {
+      renderGraph: function () {
         let selected = this.exploreSelected
         if (selected == 'me') {
           let user = getUser()
@@ -125,10 +152,13 @@
           this.renderLinks(links)
 
         } else if (selected == 'country') {
-          console.log('render country!')
+          let links = this.allLinks.filter(link => link.cc == this.dropdownSelected)
+          this.renderLinks(links)
 
         } else if (selected == 'city') {
-          console.log('render city!')
+          let zip = this.zipMap.get(this.dropdownSelected)
+          let links = this.allLinks.filter(link => link.zip == zip)
+          this.renderLinks(links)
 
         } else {
           console.log('Selection invalid!')
@@ -168,7 +198,7 @@
             .then(identities => {
               this.allLinks = preferences.links
               this.allIdentities = identities
-              this.render()
+              this.renderGraph()
             })
         })
     }

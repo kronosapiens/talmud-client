@@ -55,10 +55,9 @@
 </template>
 
 <script>
+  import countryData from 'country-data'
 
   import { submitRegistration } from '../services/server'
-
-  const countries = require('country-data').countries
 
   export default {
     name: 'userRegister',
@@ -73,7 +72,7 @@
           zip: '',
           regCode: '',
         },
-        countries: countries.all.map(c => {
+        countries: countryData.countries.all.map(c => {
           return { value: c.alpha2, text: c.name }
         }).sort((a, b) => a.text.localeCompare(b.text))
       }
