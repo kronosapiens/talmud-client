@@ -2,6 +2,10 @@
   <div>
     <h2>{{ title }}</h2>
 
+    <p>
+      Play by indicating how you feel for a given pair of identities. You can submit as many pairs as you like.
+    </p>
+
     <b-row>
       <b-col></b-col>
 

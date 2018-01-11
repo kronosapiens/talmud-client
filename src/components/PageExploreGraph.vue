@@ -166,7 +166,7 @@
       },
       renderLinks: function (links) {
         let matrix = toMatrix(links)
-        let eigenvector = powerMethod(matrix, .95)
+        let eigenvector = powerMethod(matrix, .85)
 
         let trueMap = new Map()
         toIdentityMap(links).forEach((v, k) => trueMap.set(v, k))
@@ -181,6 +181,12 @@
         this.graphLinks = links
         this.graphNodes = eigenlist
         this.tableIdentities = eigenlist.slice(0, 8)
+        this.$emit('input', this.expandEigenlist(eigenlist))
+      },
+      expandEigenlist: function (eigenlist) {
+        let eigenlistAll = new Array(this.allIdentities.length ).fill(0.0)
+        eigenlist.forEach(el => eigenlistAll[el.id - 1] = el.value) // Identities are 1-indexed
+        return eigenlistAll
       },
       lcb (link) {
         link._svgAttrs = { 'marker-end': 'url(#arrowhead)'}
