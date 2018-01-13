@@ -73,7 +73,7 @@
   }
 
   export default {
-    name: 'explore-graph',
+    name: 'page-explore-graph',
     components: { d3Network },
     data () {
       return {

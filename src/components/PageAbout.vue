@@ -20,7 +20,7 @@
 <script>
 
   export default {
-    name: 'about',
+    name: 'page-about',
     data () {
       return {
         title: 'About'

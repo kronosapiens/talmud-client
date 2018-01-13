@@ -4,12 +4,12 @@
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-    <b-navbar-brand href="/">Talmud</b-navbar-brand>
+    <b-navbar-brand v-bind:to="'/'">Talmud</b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav v-for="item in items" :key="item.name">
-        <b-nav-item v-bind:href="item.name">
+        <b-nav-item v-bind:to="item.name">
           {{ item.name }}
         </b-nav-item>
       </b-navbar-nav>
@@ -17,7 +17,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
-          <b-nav-item v-if="!isLoggedIn()" href="login">login</b-nav-item>
+          <b-nav-item v-if="!isLoggedIn()" v-bind:to="'login'">login</b-nav-item>
           <b-nav-item v-else v-on:click="handleLogout()">logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
@@ -33,7 +33,7 @@
   import { fetchLogout, getJwt, setJwt } from '../services/server'
 
   export default {
-    name: 'navbar',
+    name: 'bar-nav',
     data () {
       return {
         title: 'Navbar',
@@ -50,7 +50,7 @@
       },
       handleLogout () {
         setJwt('')
-        window.location.href = '/login'
+        this.$router.push('login')
       }
     }
   }

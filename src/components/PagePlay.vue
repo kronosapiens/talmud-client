@@ -64,7 +64,7 @@
   import { fetchIdentities, submitPreference } from '../services/server'
 
   export default {
-    name: 'player',
+    name: 'page-play',
     data () {
       return {
         title: 'Player',

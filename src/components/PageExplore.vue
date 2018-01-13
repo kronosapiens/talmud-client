@@ -23,7 +23,7 @@
   import PageExploreGraph from './PageExploreGraph.vue'
 
   export default {
-    name: 'explorer',
+    name: 'page-explore',
     components: {
       PageExploreGraph,
     },

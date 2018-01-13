@@ -60,7 +60,7 @@
   import { submitRegistration } from '../services/server'
 
   export default {
-    name: 'userRegister',
+    name: 'page-user-register',
     data () {
       return {
         title: 'UserRegister',
@@ -84,7 +84,7 @@
           alert('Passwords must match!')
         } else {
           submitRegistration(this.form)
-          window.location.href = '/'
+          this.$router.push('/')
         }
       }
     }

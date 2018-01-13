@@ -33,7 +33,7 @@
   const countries = require('country-data').countries
 
   export default {
-    name: 'userLogin',
+    name: 'page-user-login',
     data () {
       return {
         title: 'UserLogin',
@@ -49,7 +49,7 @@
         submitLogin(this.form)
           .then(data => {
             setJwt(data.jwt)
-            window.location.href = '/play'
+            this.$router.push('play')
           })
       }
     }

@@ -20,7 +20,7 @@
   import PageUserLogin from './PageUserLogin.vue'
 
   export default {
-    name: 'user',
+    name: 'page-user',
     components: {
       PageUserRegister,
       PageUserLogin,

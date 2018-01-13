@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'sticky-footer',
+    name: 'bar-footer',
     data () {
       return {
         year: (new Date).getFullYear(),
