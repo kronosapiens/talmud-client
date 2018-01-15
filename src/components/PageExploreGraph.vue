@@ -62,7 +62,8 @@
   import d3Network from 'vue-d3-network'
   import zipcodes from 'zipcodes'
 
-  import { fetchIdentities, fetchPreferences, getJwt, getUser } from '../services/server'
+  import { fetchPreferences, getJwt, getUser } from '../services/server'
+  import { identities } from '../services/identities'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
 
@@ -198,14 +199,11 @@
       },
     },
     created () {
+      this.allIdentities = identities
       fetchPreferences()
         .then(preferences => {
-          fetchIdentities()
-            .then(identities => {
-              this.allLinks = preferences.links
-              this.allIdentities = identities
-              this.renderGraph()
-            })
+          this.allLinks = preferences.links
+          this.renderGraph()
         })
     }
   }

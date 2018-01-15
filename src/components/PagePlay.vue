@@ -61,7 +61,8 @@
 </template>
 
 <script>
-  import { fetchIdentities, submitPreference, getUser } from '../services/server'
+  import { submitPreference, getUser } from '../services/server'
+  import { identities } from '../services/identities'
 
   export default {
     name: 'page-play',
@@ -96,9 +97,8 @@
       }
     },
     created () {
-      fetchIdentities()
-        .then(identities => this.identities = identities)
-     }
+      this.identities = identities
+    }
   }
 
 </script>

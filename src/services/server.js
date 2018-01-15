@@ -18,7 +18,8 @@ function getUser () {
 
 // General Utilities
 
-const urlRoot = 'http://localhost:3000/'
+// const urlRoot = 'http://localhost:3000/' // Dev
+const urlRoot = 'http://api.talmud.ai/' // Prod
 
 function getHeader () {
   return {
@@ -45,11 +46,6 @@ function postJsonP (path, data) {
 
 // Identity and Preference Methods
 
-function fetchIdentities () {
-  return getJsonP('identities')
-    .then(identities => unpackIdentities(identities))
-}
-
 function fetchPreferences () {
   return getJsonP('preferences')
     .then(preferences => {
@@ -58,12 +54,6 @@ function fetchPreferences () {
         links: unpackLinks(preferences)
       }
     })
-}
-
-function unpackIdentities(identities) {
-  return identities.map(identity => {
-    return {id: identity.id, name: identity.name, value: identity.id}
-  })
 }
 
 function unpackLinks(preferences) {
