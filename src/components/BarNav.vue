@@ -17,8 +17,8 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
-          <b-nav-item v-if="!isLoggedIn()" v-bind:to="'login'">login</b-nav-item>
-          <b-nav-item v-else v-on:click="handleLogout()">logout</b-nav-item>
+          <b-nav-item v-if="isLoggedIn" v-on:click="handleLogout()">logout</b-nav-item>
+          <b-nav-item v-else v-bind:to="'login'">login</b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
 
@@ -44,10 +44,12 @@
         ]
       }
     },
-    methods: {
+    computed: {
       isLoggedIn () {
         return Boolean(getJwt())
-      },
+      }
+    },
+    methods: {
       handleLogout () {
         setJwt('')
         this.$router.push('login')

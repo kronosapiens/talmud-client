@@ -5,7 +5,7 @@
 
     <b-alert show>{{ alert }}</b-alert>
 
-    <router-view></router-view>
+    <router-view v-model="alert"></router-view>
 
     <BarFooter/>
 

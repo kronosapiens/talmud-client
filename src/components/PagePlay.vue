@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
 
     <p>
-      Play by indicating how you feel for a given pair of identities. You can submit as many pairs as you like.
+      Play by indicating how you feel for a given pair of identities. You can submit as many pairs as you like (the more the better).
     </p>
 
     <b-row>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-  import { fetchIdentities, submitPreference } from '../services/server'
+  import { fetchIdentities, submitPreference, getUser } from '../services/server'
 
   export default {
     name: 'page-play',
@@ -84,8 +84,15 @@
       submitPreference: function () {
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
-        submitPreference(winner.id, loser.id)
         this.winner = this.loser = ''
+        if (getUser()) {
+          submitPreference(winner.id, loser.id)
+            .then(data => this.$emit('input', 'Preference saved successfully!'))
+            .catch(error => this.$emit('input', 'Preference save failed...'))
+        } else {
+          this.$emit('input', 'Must log in to play!')
+        }
+
       }
     },
     created () {

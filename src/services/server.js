@@ -32,14 +32,14 @@ function getHeader () {
 function getJsonP (path) {
   console.log('getting ' + path)
   return axios.get(urlRoot + path)
-    .catch(error => { console.log(error); return error })
+    .catch(error => { console.log(error); throw error })
     .then(res => { console.log(res); return res.data })
 }
 
 function postJsonP (path, data) {
   console.log('posting ' + path + ' with ' + JSON.stringify(data))
   return axios.post(urlRoot + path, data, getHeader())
-    .catch(error => {console.log(error); return error })
+    .catch(error => {console.log(error); throw error })
     .then(res => { console.log(res); return res.data })
 }
 
