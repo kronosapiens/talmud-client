@@ -20,7 +20,7 @@
   }
 </script>
 
-<style scoped>
+<style>
 
   body {
     /* Margin bottom by footer height */

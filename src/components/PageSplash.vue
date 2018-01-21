@@ -33,8 +33,8 @@
     </div>
 
     <div>
-      <b-btn variant="info" size="lg" href="login">Sign Up</b-btn>
-      <b-btn variant="info" size="lg" href="explore">Explore</b-btn>
+      <b-btn variant="info" size="lg" v-bind:to="'login'">Sign Up</b-btn>
+      <b-btn variant="info" size="lg" v-bind:to="'explore'">Explore</b-btn>
     </div>
 
   </div>

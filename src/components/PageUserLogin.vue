@@ -49,7 +49,8 @@
         submitLogin(this.form)
           .then(data => {
             setJwt(data.jwt)
-            this.$router.push('play')
+            // this.$router.push('play')
+            window.location.href = '/'
           })
       }
     }

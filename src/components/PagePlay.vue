@@ -62,7 +62,7 @@
 
 <script>
   import { submitPreference, getUser } from '../services/server'
-  import { identities } from '../services/identities'
+  import { identities, pivots } from '../services/identities'
 
   export default {
     name: 'page-play',
@@ -73,6 +73,9 @@
         winner: '',
         loser: '',
       }
+    },
+    created () {
+      this.identities = this.addPivots(identities)
     },
     methods: {
       handleClick: function (event) {
@@ -93,11 +96,28 @@
         } else {
           this.$emit('input', 'Must log in to play!')
         }
-
+      },
+      addPivots: function(identities) {
+        let user = getUser()
+        if (!user) {
+          return identities
+        } else {
+          let malePivots = pivots.malePivots
+          let femalePivots = pivots.femalePivots
+          return identities.map(el => {
+            if (el.pivot && user[el.pivot]) {
+              if (el.pivot == 'gender') {
+                el.name = pivots[user.gender.toLowerCase()].get(el.id)
+              } else {
+                el.name = user[el.pivot]
+              }
+              return el
+            } else {
+              return el
+            }
+          })
+        }
       }
-    },
-    created () {
-      this.identities = identities
     }
   }
 

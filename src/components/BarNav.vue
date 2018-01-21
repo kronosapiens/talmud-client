@@ -8,7 +8,7 @@
 
     <b-collapse is-nav id="nav_collapse">
 
-      <b-navbar-nav v-for="item in items" :key="item.name">
+      <b-navbar-nav v-for="item in items" v-bind:key="item.name">
         <b-nav-item v-bind:to="item.name">
           {{ item.name }}
         </b-nav-item>
@@ -52,7 +52,8 @@
     methods: {
       handleLogout () {
         setJwt('')
-        this.$router.push('login')
+        window.location.href = '/'
+        // this.$router.push('login')
       }
     }
   }
