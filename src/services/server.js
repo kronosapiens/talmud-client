@@ -60,8 +60,8 @@ function unpackLinks(preferences) {
   return preferences.map(p => {
     let [sid, tid] = p.win_bit ? [p.alpha_id, p.beta_id] : [p.beta_id, p.alpha_id]
     return {
-      sid: sid,
-      tid: tid,
+      sid: sid.toString(), // TODO: revert id to int once graph is patched.
+      tid: tid.toString(),
       uid: p.user_id,
       cc: p.cc,
       zip: p.zip
