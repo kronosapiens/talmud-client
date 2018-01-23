@@ -1,31 +1,31 @@
 exports.identities = [
-  { "name" : "Human", "id" : 0 },
-  { "name" : "Animal", "id" : 1 },
+  { "id" : 0, "name" : "Human" },
+  { "id" : 1, "name" : "Animal" },
 
-  { "name" : "Religion", "id" : 2, "pivot" : "religion" },
-  { "name" : "Ethnicity", "id" : 3, "pivot" : "ethnicity" },
-  { "name" : "Profession", "id" : 4, "pivot" : "job" },
+  { "id" : 2, "name" : "Religion", "pivot" : "religion" },
+  { "id" : 3, "name" : "Ethnicity", "pivot" : "ethnicity" },
+  { "id" : 4, "name" : "Profession", "pivot" : "job" },
 
-  { "name" : "Gender", "id" : 5, "pivot" : "gender" },
-  { "name" : "Parent", "id" : 6, "pivot" : "gender" },
-  { "name" : "Sibling", "id" : 7, "pivot" : "gender" },
-  { "name" : "Child", "id" : 8, "pivot" : "gender" },
-  { "name" : "Spouse", "id" : 9, "pivot" : "gender" },
+  { "id" : 5, "name" : "Gender", "pivot" : "gender" },
+  { "id" : 6, "name" : "Parent", "pivot" : "gender" },
+  { "id" : 7, "name" : "Sibling", "pivot" : "gender" },
+  { "id" : 8, "name" : "Child", "pivot" : "gender" },
+  { "id" : 9, "name" : "Spouse", "pivot" : "gender" },
 
-  { "name" : "Progressive", "id" : 10 },
-  { "name" : "Conservative", "id" : 11 },
+  { "id" : 10, "name" : "Progressive" },
+  { "id" : 11, "name" : "Conservative" },
 
-  { "name" : "Patriot", "id" : 12 },
-  { "name" : "Radical", "id" : 13 },
+  { "id" : 12, "name" : "Patriot" },
+  { "id" : 13, "name" : "Radical" },
 
-  { "name" : "Friend", "id" : 14 },
-  { "name" : "Colleague", "id" : 15 },
+  { "id" : 14, "name" : "Friend" },
+  { "id" : 15, "name" : "Colleague" },
 
-  { "name" : "Spiritual", "id" : 16 },
-  { "name" : "Athiest", "id" : 17 },
+  { "id" : 16, "name" : "Spiritual" },
+  { "id" : 17, "name" : "Athiest" },
 
-  { "name" : "Materialist", "id" : 18 },
-  { "name" : "Idealist", "id" : 19 },
+  { "id" : 18, "name" : "Materialist" },
+  { "id" : 19, "name" : "Idealist" },
 ]
 
 const malePivots = new Map([

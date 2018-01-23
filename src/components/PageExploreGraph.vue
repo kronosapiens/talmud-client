@@ -169,13 +169,12 @@
         let matrix = toMatrix(links)
         let eigenvector = powerMethod(matrix, .85)
 
-        let trueMap = new Map()
+        let trueMap = new Map() // MatrixIx -> TrueIx
         toIdentityMap(links).forEach((v, k) => trueMap.set(v, k))
 
         let eigenlist = eigenvector.map((value, ix) => {
           let displayValue = Math.round(value * 1000) / 1000
-          let trueIx = trueMap.get(ix)
-          let identity = this.allIdentities.find(identity => identity.id == trueIx)
+          let identity = this.allIdentities.find(el => el.id == trueMap.get(ix))
           return { name: identity.name, value: displayValue, id: identity.id }
         }).sort((a, b) => b.value - a.value)
 
@@ -185,8 +184,8 @@
         this.$emit('input', this.expandEigenlist(eigenlist))
       },
       expandEigenlist: function (eigenlist) {
-        let eigenlistAll = new Array(this.allIdentities.length ).fill(0.0)
-        eigenlist.forEach(el => eigenlistAll[el.id - 1] = el.value) // Identities are 1-indexed
+        let eigenlistAll = new Array(this.allIdentities.length).fill(0.0)
+        eigenlist.forEach(el => eigenlistAll[el.id] = el.value)
         return eigenlistAll
       },
       lcb (link) {
@@ -202,7 +201,7 @@
       this.allIdentities = identities
       fetchPreferences()
         .then(preferences => {
-          this.allLinks = preferences.links
+          this.allLinks = preferences.links // [{sid, tid, ...}]
           this.renderGraph()
         })
     }

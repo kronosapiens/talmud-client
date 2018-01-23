@@ -1,7 +1,7 @@
 const linAlg = require('linear-algebra')()
 
 Array.prototype.flatMap = function(lambda) { 
-    return Array.prototype.concat.apply([], this.map(lambda));
+    return Array.prototype.concat.apply([], this.map(lambda))
 }
 
 function norm(array) {

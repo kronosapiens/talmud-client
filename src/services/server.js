@@ -18,8 +18,8 @@ function getUser () {
 
 // General Utilities
 
-// const urlRoot = 'http://localhost:3000/' // Dev
-const urlRoot = 'http://api.talmud.ai/' // Prod
+const urlRoot = 'http://localhost:3000/' // Dev
+// const urlRoot = 'http://api.talmud.ai/' // Prod
 
 function getHeader () {
   return {

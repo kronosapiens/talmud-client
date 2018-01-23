@@ -44,11 +44,11 @@
 <b-form-group label="Zip Code" v-if="form.cc == 'US'">
   <b-form-input type="number"
     v-model="form.zip"
-    placeholder="For US residents, enter your ZIP">
+    placeholder="Optional: for US residents, enter your ZIP">
   </b-form-input>
 </b-form-group>
 
-<h4>Optional fields</h4>
+<h4>Improve Your Experience (Optional)</h4>
 
 <!-- Pivots -->
 <b-form-group label="Gender Identity">
@@ -59,36 +59,38 @@
 <b-form-group label="Religious Identity">
   <b-form-input type="text"
     v-model="form.religion"
-    placeholder="Optional: enter your religious affiliation">
+    placeholder="I am a... (Pastafarian, Buddhist, Jew, Protestant, etc.)">
   </b-form-input>
 </b-form-group>
 
 <b-form-group label="Ethnic Identity">
   <b-form-input type="text"
     v-model="form.ethnicity"
-    placeholder="Optional: enter your ethnicity">
+    placeholder="I am a... (Hispanic, Caucasian, African, Mongolian, etc.)">
   </b-form-input>
 </b-form-group>
 
 <b-form-group label="Professional Identity">
   <b-form-input type="text"
     v-model="form.job"
-    placeholder="Optional: enter your job title">
+    placeholder="I am a... (Teacher, Artist, Doctor, Engineer, etc.)">
   </b-form-input>
 </b-form-group>
+
+<h4>Improve Your Insights (Optional)</h4>
 
 <!-- Groupings -->
 <b-form-group label="Age">
   <b-form-input type="number"
     v-model="form.age"
-    placeholder="Optional: enter your age (for better insights)">
+    placeholder="Optional: enter your age">
   </b-form-input>
 </b-form-group>
 
 <b-form-group label="Income">
   <b-form-input type="number"
     v-model="form.income"
-    placeholder="Optional: enter your rough annual income (for better insights)">
+    placeholder="Optional: enter your rough annual income">
   </b-form-input>
 </b-form-group>
 
@@ -113,9 +115,9 @@
           password: '',
           passwordConfirm: '',
           regCode: '',
-          cc: '',
+          cc: 'US',
           zip: '',
-          gender: '',
+          gender: 'Other',
           religion: '',
           ethnicity: '',
           job: '',
