@@ -18,8 +18,8 @@ function getUser () {
 
 // General Utilities
 
-const urlRoot = 'http://localhost:3000/' // Dev
-// const urlRoot = 'http://api.talmud.ai/' // Prod
+// const urlRoot = 'http://localhost:3000/' // Dev
+const urlRoot = 'http://api.talmud.ai/' // Prod
 
 function getHeader () {
   return {
@@ -89,12 +89,17 @@ function submitLogin(form) {
   return postJsonP('login', form)
 }
 
+function submitConfirm(form) {
+  return postJsonP('confirm', form)
+}
+
 export {
   fetchIdentities,
   fetchPreferences,
   submitPreference,
   submitRegistration,
   submitLogin,
+  submitConfirm,
   getJwt,
   setJwt,
   getUser

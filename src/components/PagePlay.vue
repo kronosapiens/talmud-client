@@ -107,7 +107,9 @@
           return identities.map(el => {
             if (el.pivot && user[el.pivot]) {
               if (el.pivot == 'gender') {
-                el.name = pivots[user.gender.toLowerCase()].get(el.id)
+                if (Object.keys(pivots).includes(user.gender)) {
+                  el.name = pivots[user.gender.toLowerCase()].get(el.id)
+                }
               } else {
                 el.name = user[el.pivot]
               }
