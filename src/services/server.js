@@ -17,9 +17,9 @@ function getUser () {
 }
 
 // General Utilities
-
-// const urlRoot = 'http://localhost:3000/' // Dev
-const urlRoot = 'http://api.talmud.ai/' // Prod
+const urlRoot = (process.env.NODE_ENV == 'production')
+  ? 'http://api.talmud.ai/'
+  : 'http://localhost:3000/'
 
 function getHeader () {
   return {
