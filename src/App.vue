@@ -3,9 +3,9 @@
 
     <BarNav/>
 
-    <b-alert show>{{ alert }}</b-alert>
+    <b-alert show>{{ sharedState.alert }}</b-alert>
 
-    <router-view v-model="alert"></router-view>
+    <router-view></router-view>
 
     <BarFooter/>
 
@@ -18,6 +18,7 @@
   import BarFooter from './components/BarFooter.vue'
 
   import { getJwt } from './services/server'
+  import { store } from './services/store'
 
   export default {
     name: 'app',
@@ -27,7 +28,7 @@
     },
     data () {
       return {
-        alert: 'Jwt: ' + getJwt()
+        sharedState: store.state
       }
     }
   }

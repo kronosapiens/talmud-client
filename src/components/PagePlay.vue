@@ -26,14 +26,13 @@
           size="lg"
           v-on:click="winner = ''">{{ winner }}</b-btn>
         <br><br>
-        <h3> first and a </h3>
+        <h3> before I am a </h3>
         <br>
         <b-btn
           variant="success"
           size="lg"
           v-on:click="loser = ''">{{ loser }}</b-btn>
         <br><br>
-        <h3> second. </h3>
       </b-col>
 
       <b-col></b-col>
@@ -63,6 +62,7 @@
 <script>
   import { submitPreference, getUser } from '../services/server'
   import { identities, pivots } from '../services/identities'
+  import { store } from '../services/store'
 
   export default {
     name: 'page-play',
@@ -91,10 +91,10 @@
         this.winner = this.loser = ''
         if (getUser()) {
           submitPreference(winner.id, loser.id)
-            .then(data => this.$emit('input', 'Preference saved successfully!'))
-            .catch(error => this.$emit('input', 'Preference save failed...'))
+            .then(data => store.setAlert('Preference saved successfully!'))
+            .catch(error => store.setAlert('Preference save failed...'))
         } else {
-          this.$emit('input', 'Must log in to play!')
+          store.setAlert('Must log in to play!')
         }
       },
       addPivots: function(identities) {

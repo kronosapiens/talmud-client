@@ -2,7 +2,7 @@
 
   <footer class="sticky-footer">
     <div class="container text-muted">
-        &nabla; <b-link v-bind:href="url">kronosapiens</b-link> {{ year }}
+        &copy; <b-link v-bind:href="url">kronosapiens</b-link> {{ year }}
     </div>
   </footer>
 

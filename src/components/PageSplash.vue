@@ -22,11 +22,11 @@
 
     <div v-else>
       <p>
-        "Do I contradict myself?
+        Do I contradict myself?
         <br>
         Very well then I contradict myself.
         <br>
-        (I am large, I contain multitudes)"
+        (I am large, I contain multitudes)
         <br>
         -- <em> Walt Whitman </em>
       </p>
@@ -47,7 +47,7 @@
     data () {
       return {
         title: 'PageSplash',
-        msg: 'Welcome to Talmud!',
+        msg: 'Welcome to Talmud (beta)!',
       }
     }
   }

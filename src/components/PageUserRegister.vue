@@ -104,6 +104,7 @@
   import countryData from 'country-data'
 
   import { submitRegistration } from '../services/server'
+  import { store } from '../services/store'
 
   export default {
     name: 'page-user-register',
@@ -137,6 +138,7 @@
           alert('Passwords must match!')
         } else {
           submitRegistration(this.form)
+          store.setAlert('Registration sent! Check your email for confirmation.')
           this.$router.push('/')
         }
       }

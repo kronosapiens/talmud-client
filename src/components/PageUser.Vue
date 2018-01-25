@@ -4,9 +4,9 @@
 
     <b-row>
       <b-col cols="6">
-        <PageUserConfirm/>
-        <hr>
         <PageUserLogin/>
+        <hr>
+        <PageUserConfirm/>
       </b-col>
       <b-col cols="6">
         <PageUserRegister/>
