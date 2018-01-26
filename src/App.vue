@@ -35,9 +35,11 @@
 </script>
 
 <style>
-  div {
+
+  /* For development purposes*/
+/*  div {
     border:1px solid grey
-  }
+  }*/
 
   html {
     position: relative;

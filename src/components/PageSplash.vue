@@ -1,8 +1,8 @@
 <template>
 
   <div>
-    <h1>{{ msg }}</h1>
-    <br>
+    <h1>Welcome to Talmud (beta)!</h1>
+    <p>~~~</p>
 
     <div v-if="Math.random() > 0.5">
       <p>
@@ -32,6 +32,8 @@
       </p>
     </div>
 
+    <p>~</p>
+
     <div>
       <b-btn variant="info" size="lg" v-bind:to="'login'">Sign Up</b-btn>
       <b-btn variant="info" size="lg" v-bind:to="'explore'">Explore</b-btn>
@@ -47,7 +49,6 @@
     data () {
       return {
         title: 'PageSplash',
-        msg: 'Welcome to Talmud (beta)!',
       }
     }
   }

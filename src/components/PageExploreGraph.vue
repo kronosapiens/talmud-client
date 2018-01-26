@@ -18,7 +18,7 @@
       >
     </b-form-select>
 
-    <b-row>
+    <b-row class="graph-box">
       <b-col sm="8">
         <d3-network
           ref='net'
@@ -210,6 +210,11 @@
 
 <!-- <style scoped>  TODO: Breaks graph, fix. -->
   <style>
+
+    .graph-box {
+      border-right:1px solid teal;
+      border-top:1px solid teal
+    }
 
     .net {
       height:95%;

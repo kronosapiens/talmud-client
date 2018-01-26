@@ -6,6 +6,8 @@
       Play by indicating how you feel for a given pair of identities. You can submit as many pairs as you like (the more the better).
     </p>
 
+    <p>~~~</p>
+
     <b-row>
       <b-col></b-col>
 
@@ -24,15 +26,16 @@
         <b-btn
           variant="success"
           size="lg"
-          v-on:click="winner = ''">{{ winner }}</b-btn>
+          v-on:click="winner = '...'">{{ winner }}</b-btn>
         <br><br>
         <h3> before I am a </h3>
         <br>
         <b-btn
           variant="success"
           size="lg"
-          v-on:click="loser = ''">{{ loser }}</b-btn>
+          v-on:click="loser = '...'">{{ loser }}</b-btn>
         <br><br>
+        <h3>~</h3>
       </b-col>
 
       <b-col></b-col>
@@ -70,8 +73,8 @@
       return {
         title: 'Player',
         identities: [],
-        winner: '',
-        loser: '',
+        winner: '...',
+        loser: '...',
       }
     },
     created () {
@@ -80,15 +83,15 @@
     methods: {
       handleClick: function (event) {
         let name = event.target.innerText
-        if (!this.winner & this.loser != name)
+        if (this.winner == '...' & this.loser != name)
           this.winner = name
-        else if (!this.loser & this.winner != name)
+        else if (this.loser == '...' & this.winner != name)
           this.loser = name
       },
       submitPreference: function () {
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
-        this.winner = this.loser = ''
+        this.winner = this.loser = '...'
         if (getUser()) {
           submitPreference(winner.id, loser.id)
             .then(data => store.setAlert('Preference saved successfully!'))
