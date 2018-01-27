@@ -29,19 +29,19 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
 ]
 
 const malePivots = new Map([
-  [5, 'Male'],
-  [6, 'Father'],
-  [7, 'Brother'],
-  [8, 'Son'],
-  [9, 'Husband'],
+  ["5", 'Male'],
+  ["6", 'Father'],
+  ["7", 'Brother'],
+  ["8", 'Son'],
+  ["9", 'Husband'],
 ])
 
 const femalePivots = new Map([
-  [5, 'Female'],
-  [6, 'Mother'],
-  [7, 'Sister'],
-  [8, 'Daughter'],
-  [9, 'Wife'],
+  ["5", 'Female'],
+  ["6", 'Mother'],
+  ["7", 'Sister'],
+  ["8", 'Daughter'],
+  ["9", 'Wife'],
 ])
 
 exports.pivots = {

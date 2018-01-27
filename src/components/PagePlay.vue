@@ -107,19 +107,19 @@
         } else {
           let malePivots = pivots.malePivots
           let femalePivots = pivots.femalePivots
-          return identities.map(el => {
+          let identitiesCopy = JSON.parse(JSON.stringify(identities))
+          return identitiesCopy.map(el => {
             if (el.pivot && user[el.pivot]) {
               if (el.pivot == 'gender') {
-                if (Object.keys(pivots).includes(user.gender)) {
-                  el.name = pivots[user.gender.toLowerCase()].get(el.id)
+                let userGender = user.gender.toLowerCase()
+                if (Object.keys(pivots).includes(userGender)) {
+                  el.name = pivots[userGender].get(el.id)
                 }
               } else {
                 el.name = user[el.pivot]
               }
-              return el
-            } else {
-              return el
             }
+            return el
           })
         }
       }
