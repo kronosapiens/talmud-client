@@ -28,14 +28,6 @@
     </b-form-input>
 </b-form-group>
 
-<b-form-group label="Registration Code">
-  <b-form-input type="text"
-    v-model="form.regCode"
-    placeholder="Enter your registration code"
-    required>
-  </b-form-input>
-</b-form-group>
-
 <b-form-group label="Country">
   <b-form-select v-model="form.cc" v-bind:options="countries" required>
   </b-form-select>
@@ -103,7 +95,7 @@
 <script>
   import countryData from 'country-data'
 
-  import { submitRegistration } from '../services/server'
+  import { submitRegistration, setJwt } from '../services/server'
   import { store } from '../services/store'
 
   export default {
@@ -115,7 +107,6 @@
           email: '',
           password: '',
           passwordConfirm: '',
-          regCode: '',
           cc: 'US',
           zip: '',
           gender: 'Other',
@@ -133,13 +124,16 @@
     },
     methods: {
       onSubmit (event) {
-        event.preventDefault();
+        event.preventDefault()
         if (this.form.password != this.form.passwordConfirm) {
           alert('Passwords must match!')
         } else {
           submitRegistration(this.form)
-          store.setAlert('Registration sent! Check your email for confirmation.')
-          this.$router.push('/')
+            .then(data => {
+              setJwt(data.jwt)
+              store.setAlert('Registration success!')
+              window.location.href = '/'
+            })
         }
       }
     }

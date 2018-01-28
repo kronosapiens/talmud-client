@@ -4,12 +4,10 @@
 
     <b-row>
       <b-col cols="6">
-        <PageUserLogin/>
-        <hr>
-        <PageUserConfirm/>
+        <PageUserRegister/>
       </b-col>
       <b-col cols="6">
-        <PageUserRegister/>
+        <PageUserLogin/>
       </b-col>
     </b-row>
 
@@ -18,14 +16,12 @@
 
 <script>
 
-  import PageUserConfirm from './PageUserConfirm.vue'
   import PageUserLogin from './PageUserLogin.vue'
   import PageUserRegister from './PageUserRegister.vue'
 
   export default {
     name: 'page-user',
     components: {
-      PageUserConfirm,
       PageUserLogin,
       PageUserRegister,
     },

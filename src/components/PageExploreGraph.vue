@@ -62,7 +62,7 @@
   import d3Network from 'vue-d3-network'
   import zipcodes from 'zipcodes'
 
-  import { fetchPreferences, getJwt, getUser } from '../services/server'
+  import { fetchPreferences, getUser } from '../services/server'
   import { identities } from '../services/identities'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
