@@ -14,7 +14,7 @@
     data () {
       return {
         year: (new Date).getFullYear(),
-        url: 'https://twitter.com/kronosapiens'
+        url: 'https://kronosapiens.github.io'
       }
     }
   }

@@ -70,7 +70,7 @@
   const graphOptions = {
     force: 3000,
     nodeLabels: true,
-    linkWidth:5
+    linkWidth: 4
   }
 
   export default {
@@ -87,7 +87,7 @@
           { text: 'US City', value: 'city' }
         ],
         dropdownSelected: '',
-        tableFields: ['name', 'value'],
+        tableFields: ['name', 'importance'],
         allLinks: [],
         allIdentities: [],
         tableIdentities: [],
@@ -173,9 +173,13 @@
         toIdentityMap(links).forEach((v, k) => trueMap.set(v, k))
 
         let eigenlist = eigenvector.map((value, ix) => {
-          let displayValue = Math.round(value * 1000) / 1000
           let identity = this.allIdentities.find(el => el.id == trueMap.get(ix))
-          return { name: identity.name, value: displayValue, id: identity.id }
+          return {
+              id: identity.id,
+              name: identity.name,
+              value: value,
+              importance: (Math.round(value * 1000) / 10).toString() + '%',
+            }
         }).sort((a, b) => b.value - a.value)
 
         this.graphLinks = links
@@ -193,15 +197,17 @@
         return link
       },
       ncb (node) {
-        node._size = 10 + Math.sqrt(400 * node.value)
+        node._size = 6 + Math.sqrt(800 * node.value)
         return node
       },
     },
     created () {
       this.allIdentities = identities
+      let idSet = new Set(identities.map(el => el.id))
       fetchPreferences()
         .then(preferences => {
           this.allLinks = preferences.links // [{sid, tid, ...}]
+            .filter(link => idSet.has(link.sid) && idSet.has(link.tid))
           this.renderGraph()
         })
     }
@@ -224,7 +230,7 @@
     .node {
       stroke:teal;
       stroke-opacity:.7;
-      stroke-width:3px;
+      stroke-width:2px;
       transition:fill .5s ease;
       fill:#dcfaf3
     }

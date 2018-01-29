@@ -21,9 +21,6 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "14", "name" : "Friend" },
   { "id" : "15", "name" : "Colleague" },
 
-  { "id" : "16", "name" : "Spiritual" },
-  { "id" : "17", "name" : "Athiest" },
-
   { "id" : "18", "name" : "Materialist" },
   { "id" : "19", "name" : "Idealist" },
 ]

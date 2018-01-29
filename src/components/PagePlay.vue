@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
 
     <p>
-      Play by indicating how you feel for a given pair of identities. You can submit as many pairs as you like (the more the better).
+      Play Talmud by indicating your preference for any pair of identities. You can submit as many pairs as you like (the more the better).
     </p>
 
     <p>~~~</p>
@@ -15,9 +15,17 @@
         <b-btn
           variant="outline-success"
           size="lg"
+          class="btn-play"
           v-for="identity in identities"
           v-bind:key="identity.name"
           v-on:click="handleClick">{{ identity.name }}</b-btn>
+
+        <hr>
+
+        <b-btn
+        variant="info"
+        size="lg"
+        v-on:click="submitPreference">Submit</b-btn>
       </b-col>
 
       <b-col sm="4">
@@ -39,21 +47,6 @@
       </b-col>
 
       <b-col></b-col>
-    </b-row>
-
-    <b-row>
-
-      <b-col></b-col>
-
-      <b-col sm="6">
-        <b-btn
-        variant="info"
-        size="lg"
-        v-on:click="submitPreference">Submit</b-btn>
-      </b-col>
-
-      <b-col></b-col>
-
     </b-row>
 
   </b-row>
@@ -129,5 +122,9 @@
 </script>
 
 <style scoped>
+
+  .btn-play {
+    margin:5px;
+  }
 
 </style>
