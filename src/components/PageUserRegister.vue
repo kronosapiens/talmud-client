@@ -4,92 +4,70 @@
 
     <b-form v-on:submit="onSubmit">
 
-      <b-form-group label="Email">
+      <b-form-group label="Basics 📚">
         <b-form-input type="email"
           v-model="form.email"
           placeholder="Enter an email"
           required>
         </b-form-input>
-    </b-form-group>
 
-    <b-form-group label="Password">
-      <b-form-input type="password"
-        v-model="form.password"
-        placeholder="Choose a password"
-        required>
-      </b-form-input>
-  </b-form-group>
+        <br>
+        <b-form-input type="password"
+          v-model="form.password"
+          placeholder="Choose a password"
+          required>
+        </b-form-input>
 
-  <b-form-group label="Confirm Password">
-    <b-form-input type="password"
-      v-model="form.passwordConfirm"
-      placeholder="Enter it again ;)"
-      required>
-    </b-form-input>
-</b-form-group>
+        <br>
+        <b-form-input type="password"
+          v-model="form.passwordConfirm"
+          placeholder="Enter it again ;)"
+          required>
+        </b-form-input>
+      </b-form-group>
 
-<b-form-group label="Country">
-  <b-form-select v-model="form.cc" v-bind:options="countries" required>
-  </b-form-select>
-</b-form-group>
+      <br>
+      <b-form-group label="Geographic Info 🌍">
+        <b-form-select v-model="form.cc" v-bind:options="countries" required>
+        </b-form-select>
 
-<b-form-group label="Zip Code" v-if="form.cc == 'US'">
-  <b-form-input type="number"
-    v-model="form.zip"
-    placeholder="Optional: for US residents, enter your ZIP">
-  </b-form-input>
-</b-form-group>
+        &nbsp
+        <b-form-input type="number"
+          v-if="form.cc == 'US'"
+          v-model="form.zip"
+          placeholder="Optional: for US residents, enter your ZIP">
+        </b-form-input>
+      </b-form-group>
 
-<h4>Improve Your Experience (Optional)</h4>
+      <br>
+      <!-- Pivots -->
+      <b-form-group label="Gender, Religious, Ethnic, and Professional Identity (optional) ✨">
+        <b-form-select v-model="form.gender" v-bind:options="genderOptions">
+        </b-form-select>
 
-<!-- Pivots -->
-<b-form-group label="Gender Identity">
-  <b-form-select v-model="form.gender" v-bind:options="genderOptions">
-  </b-form-select>
-</b-form-group>
+        &nbsp
+        <b-form-input type="text"
+          v-model="form.religion"
+          placeholder="I am a... (Pastafarian, Buddhist, Jew, Protestant, etc.)">
+        </b-form-input>
 
-<b-form-group label="Religious Identity">
-  <b-form-input type="text"
-    v-model="form.religion"
-    placeholder="I am a... (Pastafarian, Buddhist, Jew, Protestant, etc.)">
-  </b-form-input>
-</b-form-group>
+        <br>
+        <b-form-input type="text"
+          v-model="form.ethnicity"
+          placeholder="I am a... (Hispanic, Caucasian, African, Mongolian, etc.)">
+        </b-form-input>
 
-<b-form-group label="Ethnic Identity">
-  <b-form-input type="text"
-    v-model="form.ethnicity"
-    placeholder="I am a... (Hispanic, Caucasian, African, Mongolian, etc.)">
-  </b-form-input>
-</b-form-group>
+        <br>
+        <b-form-input type="text"
+          v-model="form.job"
+          placeholder="I am a... (Teacher, Artist, Doctor, Engineer, etc.)">
+        </b-form-input>
+      </b-form-group>
 
-<b-form-group label="Professional Identity">
-  <b-form-input type="text"
-    v-model="form.job"
-    placeholder="I am a... (Teacher, Artist, Doctor, Engineer, etc.)">
-  </b-form-input>
-</b-form-group>
+      <b-button type="submit" variant="primary">Submit</b-button>
+    </b-form>
 
-<h4>Improve Your Insights (Optional)</h4>
-
-<!-- Groupings -->
-<b-form-group label="Age">
-  <b-form-input type="number"
-    v-model="form.age"
-    placeholder="Optional: enter your age">
-  </b-form-input>
-</b-form-group>
-
-<b-form-group label="Income">
-  <b-form-input type="number"
-    v-model="form.income"
-    placeholder="Optional: enter your rough annual income">
-  </b-form-input>
-</b-form-group>
-
-<b-button type="submit" variant="primary">Submit</b-button>
-</b-form>
-
-</div>
+  </div>
 </template>
 
 <script>
@@ -109,14 +87,12 @@
           passwordConfirm: '',
           cc: 'US',
           zip: '',
-          gender: 'Other',
+          gender: 'Other Gender',
           religion: '',
           ethnicity: '',
           job: '',
-          age: '',
-          income: '',
         },
-        genderOptions: ['Male', 'Female', 'Genderqueer', 'Other'],
+        genderOptions: ['Male', 'Female', 'Genderqueer', 'Other Gender'],
         countries: countryData.countries.all.map(c => {
           return { value: c.alpha2, text: c.name }
         }).sort((a, b) => a.text.localeCompare(b.text))

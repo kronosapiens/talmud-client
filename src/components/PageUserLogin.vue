@@ -4,15 +4,14 @@
 
     <b-form v-on:submit="onSubmit">
 
-      <b-form-group label="Email">
+      <b-form-group label="Basics 📚">
         <b-form-input type="email"
         v-model="form.email"
         placeholder="Enter your email"
         required>
       </b-form-input>
-    </b-form-group>
 
-    <b-form-group label="Password">
+      <br>
       <b-form-input type="password"
       v-model="form.password"
       placeholder="Enter your password"

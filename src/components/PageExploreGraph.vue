@@ -188,8 +188,10 @@
         this.$emit('input', this.expandEigenlist(eigenlist))
       },
       expandEigenlist: function (eigenlist) {
-        let eigenlistAll = new Array(this.allIdentities.length).fill(0.0)
-        eigenlist.forEach(el => eigenlistAll[el.id] = el.value)
+        let eigenlistAll = new Array(
+          Math.max(...this.allIdentities.map(el => parseInt(el.id)))
+          ).fill(0.0)
+        eigenlist.forEach(el => eigenlistAll[parseInt(el.id)] = el.value)
         return eigenlistAll
       },
       lcb (link) {

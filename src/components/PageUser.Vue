@@ -3,12 +3,14 @@
     <h2>{{ title }}</h2>
 
     <b-row>
-      <b-col cols="6">
+      <b-col></b-col>
+      <b-col cols="4">
         <PageUserRegister/>
       </b-col>
-      <b-col cols="6">
+      <b-col cols="4">
         <PageUserLogin/>
       </b-col>
+      <b-col></b-col>
     </b-row>
 
   </div>

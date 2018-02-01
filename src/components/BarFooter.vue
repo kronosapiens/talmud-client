@@ -14,7 +14,7 @@
     data () {
       return {
         year: (new Date).getFullYear(),
-        url: 'https://kronosapiens.github.io'
+        url: 'http://www.hamsterdance.org/hamsterdance/'
       }
     }
   }

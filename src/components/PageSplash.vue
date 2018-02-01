@@ -4,7 +4,7 @@
     <h1>Welcome to Talmud (beta)!</h1>
     <p>~~~</p>
 
-    <div v-if="Math.random() > 0.5">
+    <div v-if="Math.random() > 0.6">
       <p>
         <strong>Golda</strong>, you must remember that first I am an
         <b-btn variant="success" size="md" v-bind:to="'play'">American</b-btn>
