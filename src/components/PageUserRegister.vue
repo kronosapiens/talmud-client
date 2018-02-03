@@ -4,7 +4,7 @@
 
     <b-form v-on:submit="onSubmit">
 
-      <b-form-group label="Basics 📚">
+      <b-form-group label="📚 Basics">
         <b-form-input type="email"
           v-model="form.email"
           placeholder="Enter an email"
@@ -27,7 +27,7 @@
       </b-form-group>
 
       <br>
-      <b-form-group label="Geographic Info 🌍">
+      <b-form-group label="🌍 Geographic Info">
         <b-form-select v-model="form.cc" v-bind:options="countries" required>
         </b-form-select>
 
@@ -41,7 +41,7 @@
 
       <br>
       <!-- Pivots -->
-      <b-form-group label="Gender, Religious, Ethnic, and Professional Identity (optional) ✨">
+      <b-form-group label="✨ Demographic Identities (optional)">
         <b-form-select v-model="form.gender" v-bind:options="genderOptions">
         </b-form-select>
 
@@ -92,7 +92,7 @@
           ethnicity: '',
           job: '',
         },
-        genderOptions: ['Male', 'Female', 'Genderqueer', 'Other Gender'],
+        genderOptions: ['Female', 'Male', 'Genderqueer', 'Other Gender'],
         countries: countryData.countries.all.map(c => {
           return { value: c.alpha2, text: c.name }
         }).sort((a, b) => a.text.localeCompare(b.text))

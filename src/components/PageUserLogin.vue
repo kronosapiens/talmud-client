@@ -4,7 +4,7 @@
 
     <b-form v-on:submit="onSubmit">
 
-      <b-form-group label="Basics 📚">
+      <b-form-group label="🌞 Welcome">
         <b-form-input type="email"
         v-model="form.email"
         placeholder="Enter your email"

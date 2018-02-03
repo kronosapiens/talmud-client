@@ -7,6 +7,7 @@
 
     <router-view></router-view>
 
+    <br>
     <BarFooter/>
 
   </div>

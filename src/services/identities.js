@@ -21,8 +21,8 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "14", "name" : "Friend" },
   { "id" : "15", "name" : "Colleague" },
 
-  { "id" : "18", "name" : "Materialist" },
-  { "id" : "19", "name" : "Idealist" },
+  // { "id" : "18", "name" : "Materialist" },
+  // { "id" : "19", "name" : "Idealist" },
 ]
 
 const malePivots = new Map([

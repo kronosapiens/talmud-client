@@ -3,96 +3,53 @@
     <h2>{{ title }}</h2>
 
     <p>
-      Play Talmud by indicating your preference for any pair of identities. You can submit as many pairs as you like (the more the better).
+      Play Talmud by choosing which identity is more important to you. You can play as much as you like (the more the better).
     </p>
 
     <p>~~~</p>
 
-    <b-row>
-      <b-col></b-col>
-
-      <b-col sm="4">
-        <b-btn
-          variant="outline-success"
-          size="lg"
-          class="btn-play"
-          v-for="identity in identities"
-          v-bind:key="identity.name"
-          v-on:click="handleClick">{{ identity.name }}</b-btn>
-
-        <hr>
-
-        <b-btn
-        variant="info"
+    <b-form-group>
+      <b-form-radio-group
+        buttons
+        button-variant="outline-info"
         size="lg"
-        v-on:click="submitPreference">Submit</b-btn>
-      </b-col>
+        v-model="playSelected"
+        v-bind:options="playOptions"
+        />
+    </b-form-group>
 
-      <b-col sm="4">
-        <h3> I am a </h3>
-        <br>
-        <b-btn
-          variant="success"
-          size="lg"
-          v-on:click="winner = '...'">{{ winner }}</b-btn>
-        <br><br>
-        <h3> before I am a </h3>
-        <br>
-        <b-btn
-          variant="success"
-          size="lg"
-          v-on:click="loser = '...'">{{ loser }}</b-btn>
-        <br><br>
-        <h3>~</h3>
-      </b-col>
+    <PagePlaySkill v-if="playSelected == 'Skill'" v-bind:identities="identities"></PagePlaySkill>
+    <PagePlayLuck v-else v-bind:identities="identities"></PagePlayLuck>
 
-      <b-col></b-col>
-    </b-row>
-
-  </b-row>
-
-</div>
-
+  </div>
 </template>
 
 <script>
-  import { submitPreference, getUser } from '../services/server'
+
+  import { getUser } from '../services/server'
   import { identities, pivots } from '../services/identities'
-  import { store } from '../services/store'
+
+  import PagePlayLuck from './PagePlayLuck.vue'
+  import PagePlaySkill from './PagePlaySkill.vue'
 
   export default {
     name: 'page-play',
+    components: {
+      PagePlayLuck,
+      PagePlaySkill,
+    },
     data () {
       return {
         title: 'Player',
         identities: [],
-        winner: '...',
-        loser: '...',
+        playSelected: 'Luck',
+        playOptions: ['Luck', 'Skill']
       }
     },
     created () {
       this.identities = this.addPivots(identities)
     },
     methods: {
-      handleClick: function (event) {
-        let name = event.target.innerText
-        if (this.winner == '...' & this.loser != name)
-          this.winner = name
-        else if (this.loser == '...' & this.winner != name)
-          this.loser = name
-      },
-      submitPreference: function () {
-        let winner = this.identities.find(el => el.name == this.winner)
-        let loser = this.identities.find(el => el.name == this.loser)
-        this.winner = this.loser = '...'
-        if (getUser()) {
-          submitPreference(winner.id, loser.id)
-            .then(data => store.setAlert('Preference saved successfully!'))
-            .catch(error => store.setAlert('Preference save failed...'))
-        } else {
-          store.setAlert('Must log in to play!')
-        }
-      },
       addPivots: function(identities) {
         let user = getUser()
         if (!user) {
@@ -122,9 +79,5 @@
 </script>
 
 <style scoped>
-
-  .btn-play {
-    margin:5px;
-  }
 
 </style>
