@@ -36,8 +36,11 @@
     },
     computed: {
       cosineSimilarity: function () {
-        if (this.identitiesLeft.length > 0 & this.identitiesRight.length > 0)
-          var score = similarity(this.identitiesLeft, this.identitiesRight)
+        let left = this.identitiesLeft
+        let right = this.identitiesRight
+        console.log([left, right])
+        if ((left.length > 0) & (left.length == right.length))
+          var score = similarity(left, right)
         else
           var score = 0
         return Math.round(score * 1000) / 1000
