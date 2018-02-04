@@ -49,11 +49,11 @@
   import { store } from '../services/store'
 
   export default {
-    name: 'page-play-luck',
+    name: 'page-play-chance',
     props: ['identities'],
     data () {
       return {
-        title: 'PlayerLuck',
+        title: 'PlayerChance',
         alpha: {},
         beta: {},
       }

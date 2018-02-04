@@ -18,8 +18,8 @@
         />
     </b-form-group>
 
-    <PagePlaySkill v-if="playSelected == 'Skill'" v-bind:identities="identities"></PagePlaySkill>
-    <PagePlayLuck v-else v-bind:identities="identities"></PagePlayLuck>
+    <PagePlayChance v-if="playSelected == 'Chance'" v-bind:identities="identities"></PagePlayChance>
+    <PagePlayChoice v-else v-bind:identities="identities"></PagePlayChoice>
 
   </div>
 </template>
@@ -29,21 +29,21 @@
   import { getUser } from '../services/server'
   import { identities, pivots } from '../services/identities'
 
-  import PagePlayLuck from './PagePlayLuck.vue'
-  import PagePlaySkill from './PagePlaySkill.vue'
+  import PagePlayChance from './PagePlayChance.vue'
+  import PagePlayChoice from './PagePlayChoice.vue'
 
   export default {
     name: 'page-play',
     components: {
-      PagePlayLuck,
-      PagePlaySkill,
+      PagePlayChance,
+      PagePlayChoice,
     },
     data () {
       return {
         title: 'Player',
         identities: [],
-        playSelected: 'Luck',
-        playOptions: ['Luck', 'Skill']
+        playSelected: 'Chance',
+        playOptions: ['Chance', 'Choice']
       }
     },
     created () {

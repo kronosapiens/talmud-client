@@ -55,11 +55,11 @@
   import { store } from '../services/store'
 
   export default {
-    name: 'page-play-skill',
+    name: 'page-play-choice',
     props: ['identities'],
     data () {
       return {
-        title: 'PlayerSkill',
+        title: 'PlayerChoice',
         winner: '...',
         loser: '...',
       }
