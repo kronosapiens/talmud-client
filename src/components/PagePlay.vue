@@ -2,21 +2,23 @@
   <div>
     <h2>{{ title }}</h2>
 
-    <p>
-      Play Talmud by choosing which identity is more important to you. You can play as much as you like (the more the better).
-    </p>
-
-    <p>~~~</p>
+    <br>
 
     <b-form-group>
       <b-form-radio-group
         buttons
         button-variant="outline-info"
-        size="lg"
+        size="md"
         v-model="playSelected"
         v-bind:options="playOptions"
         />
     </b-form-group>
+
+    <p>
+      Play Talmud by choosing which identity is more important to you. You can play as much as you like (the more the better).
+    </p>
+
+    <p>~~~</p>
 
     <PagePlayChance v-if="playSelected == 'Chance'" v-bind:identities="identities"></PagePlayChance>
     <PagePlayChoice v-else v-bind:identities="identities"></PagePlayChoice>

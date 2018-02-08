@@ -1,17 +1,17 @@
 <template>
 
   <div>
-    <h1>Welcome to Talmud (beta)!</h1>
+    <h1>Welcome to Talmud!</h1>
     <p>~~~</p>
 
     <div v-if="Math.random() > 0.7">
       <p>
         <strong>Golda</strong>, you must remember that first I am an
-        <b-btn variant="success" size="md" v-bind:to="'play'">American</b-btn>
+        <b-btn variant="success" size="md">American</b-btn>
         , second I am
-        <b-btn variant="success" size="md" v-bind:to="'play'">Secretary Of State</b-btn>
+        <b-btn variant="success" size="md">Secretary Of State</b-btn>
         , and third I am a
-        <b-btn variant="success" size="md" v-bind:to="'play'">Jew</b-btn>
+        <b-btn variant="success" size="md">Jew</b-btn>
         .
       </p>
       <br>
@@ -37,8 +37,8 @@
     <p>~</p>
 
     <div>
-      <b-btn v-if="isLoggedIn" variant="info" size="lg" v-bind:to="'play'">&ensp;Play&ensp;</b-btn>
-      <b-btn v-else variant="info" size="lg" v-bind:to="'login'">Sign Up</b-btn>
+      <b-btn v-bind:variant="loginStyle" size="lg" v-bind:to="'login'">Sign Up</b-btn>
+      <b-btn v-bind:variant="playStyle" size="lg" v-bind:to="'play'">&ensp;Play&ensp;</b-btn>
       <b-btn variant="info" size="lg" v-bind:to="'explore'">Explore</b-btn>
     </div>
 
@@ -60,6 +60,12 @@
     computed: {
       isLoggedIn () {
         return Boolean(getJwt())
+      },
+      loginStyle () {
+        return this.isLoggedIn ? 'info' : 'danger'
+      },
+      playStyle () {
+        return this.isLoggedIn ? 'danger' : 'info'
       }
     }
   }

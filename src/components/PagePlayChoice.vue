@@ -81,7 +81,7 @@
             .then(data => store.setAlert('Preference saved successfully!'))
             .catch(error => store.setAlert('Preference save failed...'))
         } else {
-          store.setAlert('Must log in to play!')
+          alert("Must log in to play!")
         }
       }
     }

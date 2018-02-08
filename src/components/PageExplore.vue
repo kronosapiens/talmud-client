@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
 
-    <h4>Similarity score: {{ cosineSimilarity }}</h4>
+    <h5>Similarity score: {{ cosineSimilarity }}</h5>
 
     <b-row>
       <b-col lg="6">

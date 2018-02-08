@@ -1,22 +1,32 @@
 <template>
   <div>
-    <b-form-group>
-    <b-form-radio-group
-      buttons
-      button-variant="outline-info"
-      size="lg"
-      v-model="exploreSelected"
-      v-bind:options="exploreOptions"
-      />
-    </b-form-group>
 
-    <b-form-select
-      class="mb-3"
-      v-model="dropdownSelected"
-      v-bind:options="dropdownOptions"
-      v-bind:style="dropdownStyle"
-      >
-    </b-form-select>
+    <b-row>
+      <b-col></b-col>
+      <b-col sm="6">
+
+        <p>n = {{ n }}</p>
+        <b-form-group>
+        <b-form-radio-group
+          buttons
+          button-variant="outline-info"
+          size="lg"
+          v-model="exploreSelected"
+          v-bind:options="exploreOptions"
+          />
+        </b-form-group>
+
+        <b-form-select
+          class="mb-3"
+          v-model="dropdownSelected"
+          v-bind:options="dropdownOptions"
+          v-bind:style="dropdownStyle"
+          >
+        </b-form-select>
+
+      </b-col>
+      <b-col></b-col>
+    </b-row>
 
     <b-row class="graph-box">
       <b-col sm="8">
@@ -66,6 +76,7 @@
   import { identities } from '../services/identities'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
+  import { store } from '../services/store'
 
   const graphOptions = {
     force: 3000,
@@ -93,7 +104,8 @@
         tableIdentities: [],
         graphNodes: [],
         graphLinks: [],
-        graphOptions: graphOptions
+        graphOptions: graphOptions,
+        n: 0,
       }
     },
     computed: {
@@ -145,7 +157,7 @@
             let links = this.allLinks.filter(link => link.uid == user.id)
             this.renderLinks(links)
           } else {
-            alert('Please log in first!')
+            store.setAlert('Must log in to view!')
           }
 
         } else if (selected == 'world') {
@@ -182,6 +194,7 @@
             }
         }).sort((a, b) => b.value - a.value)
 
+        this.n = links.length
         this.graphLinks = links
         this.graphNodes = eigenlist
         this.tableIdentities = eigenlist.slice(0, 8)
