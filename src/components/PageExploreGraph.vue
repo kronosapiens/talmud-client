@@ -72,7 +72,7 @@
   import d3Network from 'vue-d3-network'
   import zipcodes from 'zipcodes'
 
-  import { fetchPreferences, getUser } from '../services/server'
+  import { fetchPreferences } from '../services/server'
   import { identities } from '../services/identities'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
@@ -152,7 +152,7 @@
       renderGraph: function () {
         let selected = this.exploreSelected
         if (selected == 'me') {
-          let user = getUser()
+          let user = store.getUser()
           if (user) {
             let links = this.allLinks.filter(link => link.uid == user.id)
             this.renderLinks(links)

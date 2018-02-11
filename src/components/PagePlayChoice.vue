@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  import { submitPreference, getUser } from '../services/server'
+  import { submitPreference } from '../services/server'
   import { store } from '../services/store'
 
   export default {
@@ -76,7 +76,7 @@
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
         this.winner = this.loser = '...'
-        if (getUser()) {
+        if (store.state.isLoggedIn) {
           submitPreference(winner.id, loser.id)
             .then(data => store.setAlert('Preference saved successfully!'))
             .catch(error => store.setAlert('Preference save failed...'))

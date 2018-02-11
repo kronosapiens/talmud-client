@@ -27,7 +27,8 @@
 
 <script>
 
-  import { submitLogin, setJwt } from '../services/server'
+  import { submitLogin } from '../services/server'
+  import { store } from '../services/store'
 
   export default {
     name: 'page-user-login',
@@ -44,10 +45,16 @@
       onSubmit (event) {
         event.preventDefault()
         submitLogin(this.form)
+          .catch(error => store.setAlert('Something went wrong :('))
           .then(data => {
-            setJwt(data.jwt)
-            window.location.href = '/'
+            if (data.jwt) {
+              store.handleLogin(data.jwt)
+              store.setAlert('Login success! 🙏')
+            } else {
+              store.setAlert(data.text + ' :(')
+            }
           })
+        this.$router.push('/')
       }
     }
   }

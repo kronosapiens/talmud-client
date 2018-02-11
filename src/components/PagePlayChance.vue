@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import { submitPreference, getUser } from '../services/server'
+  import { submitPreference } from '../services/server'
   import { store } from '../services/store'
 
   export default {
@@ -69,9 +69,12 @@
         this.beta = this.identities[betaIdx]
       },
       handleWinner: function (winner, loser) {
-        if (getUser()) {
+        if (store.state.isLoggedIn) {
           submitPreference(winner.id, loser.id)
-            .then(data => this.resetOptions())
+            .then(data => {
+              this.resetOptions()
+              store.setAlert('Preference saved successfully!')
+            })
         } else {
           alert("Must log in to play!")
         }

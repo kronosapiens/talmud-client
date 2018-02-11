@@ -28,7 +28,7 @@
 
 <script>
 
-  import { getUser } from '../services/server'
+  import { store } from '../services/store'
   import { identities, pivots } from '../services/identities'
 
   import PagePlayChance from './PagePlayChance.vue'
@@ -53,7 +53,7 @@
     },
     methods: {
       addPivots: function(identities) {
-        let user = getUser()
+        let user = store.getUser()
         if (!user) {
           return identities
         } else {

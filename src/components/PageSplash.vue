@@ -48,7 +48,7 @@
 
 <script>
 
-  import { getJwt } from '../services/server'
+  import { store } from '../services/store'
 
   export default {
     name: 'page-splash',
@@ -58,14 +58,11 @@
       }
     },
     computed: {
-      isLoggedIn () {
-        return Boolean(getJwt())
-      },
       loginStyle () {
-        return this.isLoggedIn ? 'info' : 'danger'
+        return store.state.isLoggedIn ? 'info' : 'danger'
       },
       playStyle () {
-        return this.isLoggedIn ? 'danger' : 'info'
+        return store.state.isLoggedIn ? 'danger' : 'info'
       }
     }
   }

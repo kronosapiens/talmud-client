@@ -73,7 +73,7 @@
 <script>
   import countryData from 'country-data'
 
-  import { submitRegistration, setJwt } from '../services/server'
+  import { submitRegistration } from '../services/server'
   import { store } from '../services/store'
 
   export default {
@@ -105,11 +105,16 @@
           alert('Passwords must match!')
         } else {
           submitRegistration(this.form)
+            .catch(error => store.setAlert('Something went wrong :('))
             .then(data => {
-              setJwt(data.jwt)
-              store.setAlert('Registration success!')
-              window.location.href = '/'
+              if (data.jwt) {
+                store.handleLogin(data.jwt)
+                store.setAlert('Registration success! 🙏')
+              } else {
+                store.setAlert(data.text + ' :(')
+              }
             })
+          this.$router.push('/')
         }
       }
     }

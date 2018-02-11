@@ -18,7 +18,6 @@
   import BarNav from './components/BarNav.vue'
   import BarFooter from './components/BarFooter.vue'
 
-  import { getJwt } from './services/server'
   import { store } from './services/store'
 
   export default {
@@ -31,6 +30,9 @@
       return {
         sharedState: store.state
       }
+    },
+    created () {
+      store.initialize()
     }
   }
 </script>

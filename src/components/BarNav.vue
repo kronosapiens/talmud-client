@@ -17,6 +17,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
+          <b-nav-item v-if="isLoggedIn">{{ userEmail }}</b-nav-item>
           <b-nav-item v-if="isLoggedIn" v-on:click="handleLogout()">logout</b-nav-item>
           <b-nav-item v-else v-bind:to="'login'">login</b-nav-item>
         </b-navbar-nav>
@@ -30,13 +31,14 @@
 
 <script>
 
-  import { fetchLogout, getJwt, setJwt } from '../services/server'
+  import { store } from '../services/store'
 
   export default {
     name: 'bar-nav',
     data () {
       return {
         title: 'Navbar',
+        sharedState: store.state,
         items: [
           { name: 'play' },
           { name: 'explore' },
@@ -46,14 +48,18 @@
     },
     computed: {
       isLoggedIn () {
-        return Boolean(getJwt())
+        return this.sharedState.isLoggedIn
+      },
+      userEmail () {
+        if (this.isLoggedIn) {
+          return store.getUser().email.split('@')[0]
+        }
       }
     },
     methods: {
       handleLogout () {
-        setJwt('')
-        window.location.href = '/'
-        // this.$router.push('login')
+        store.handleLogout()
+        store.setAlert('See you later! 👋')
       }
     }
   }

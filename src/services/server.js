@@ -1,20 +1,5 @@
 const axios = require('axios')
-const jsonwebtoken = require('jsonwebtoken')
 
-// Browser storage
-
-function setJwt (jwt) {
-  let jwtStr = jwt ? jwt : '' // Deal with null and undefined
-  return sessionStorage.setItem('jwt', jwtStr)
-}
-
-function getJwt () {
-  return sessionStorage.getItem('jwt')
-}
-
-function getUser () {
-  return jsonwebtoken.decode(getJwt())
-}
 
 // General Utilities
 const urlRoot = (process.env.NODE_ENV == 'production')
@@ -25,7 +10,7 @@ function getHeader () {
   return {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + getJwt()
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     }
   }
 }
@@ -99,8 +84,5 @@ export {
   submitPreference,
   submitRegistration,
   submitLogin,
-  submitConfirm,
-  getJwt,
-  setJwt,
-  getUser
+  submitConfirm
 }
