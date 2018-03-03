@@ -78,11 +78,16 @@ function submitConfirm(form) {
   return postJsonP('confirm', form)
 }
 
+function submitUpdate(form) {
+  return postJsonP('update', form)
+}
+
 export {
   fetchIdentities,
   fetchPreferences,
   submitPreference,
   submitRegistration,
   submitLogin,
-  submitConfirm
+  submitConfirm,
+  submitUpdate
 }

@@ -17,8 +17,8 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav right>
-          <b-nav-item v-if="isLoggedIn">{{ userEmail }}</b-nav-item>
-          <b-nav-item v-if="isLoggedIn" v-on:click="handleLogout()">logout</b-nav-item>
+          <b-nav-item v-if="sharedState.isLoggedIn" v-bind:to="'login'">{{ userEmail }}</b-nav-item>
+          <b-nav-item v-if="sharedState.isLoggedIn" v-on:click="handleLogout()">logout</b-nav-item>
           <b-nav-item v-else v-bind:to="'login'">login</b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
@@ -47,11 +47,8 @@
       }
     },
     computed: {
-      isLoggedIn () {
-        return this.sharedState.isLoggedIn
-      },
       userEmail () {
-        if (this.isLoggedIn) {
+        if (this.sharedState.isLoggedIn) {
           return store.getUser().email.split('@')[0]
         }
       }
