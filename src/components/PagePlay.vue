@@ -49,6 +49,7 @@
       }
     },
     created () {
+      store.clearAlert()
       this.identities = this.addPivots(identities)
     },
     methods: {

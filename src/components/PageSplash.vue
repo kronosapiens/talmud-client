@@ -2,45 +2,40 @@
 
   <div>
     <h1>Welcome to Talmud!</h1>
+
     <p>~~~</p>
 
-    <div v-if="Math.random() > 0.7">
-      <p>
-        <strong>Golda</strong>, you must remember that first I am an
-        <b-btn variant="success" size="md">American</b-btn>
-        , second I am
-        <b-btn variant="success" size="md">Secretary Of State</b-btn>
-        , and third I am a
-        <b-btn variant="success" size="md">Jew</b-btn>
-        .
-      </p>
-      <br>
-      <p>
-        <strong>Henry</strong>, you forget that in 🇮🇱 we read from right to left.
-      </p>
-    </div>
+    <p>
+      Talmud is a collaborative art project, using math and philosophy to explore our sense of self and other.
 
-    <div v-else>
-      <p>
-        <em>
-          Do I contradict myself?
-          <br>
-          Very well then I contradict myself.
-          <br>
-          (I am large, I contain multitudes)
-        </em>
-        <br><br>
-        -- <strong> Walt Whitman </strong>
-      </p>
-    </div>
+      <br><br>
 
-    <p>~</p>
+      To get started:
+    </p>
 
-    <div>
-      <b-btn v-bind:variant="loginStyle" size="lg" v-bind:to="'login'">Sign Up</b-btn>
-      <b-btn v-bind:variant="playStyle" size="lg" v-bind:to="'play'">&ensp;Play&ensp;</b-btn>
-      <b-btn variant="info" size="lg" v-bind:to="'explore'">Explore</b-btn>
-    </div>
+    <b-row>
+
+      <b-col></b-col>
+
+      <b-col sm="6">
+        <b-list-group>
+          <b-list-group-item v-bind:variant="loginStyle" v-bind:to="'login'">
+            1. <strong>Sign in</strong>, giving us a little demographic info so we can give you an optimal experience.
+          </b-list-group-item>
+
+          <b-list-group-item v-bind:variant="playStyle" v-bind:to="'play'">
+            2. <strong>Play</strong> our identity game, choosing the identities that feel the most important to you.
+          </b-list-group-item>
+
+          <b-list-group-item variant="default" v-bind:to="'explore'">
+            3. <strong>Explore</strong> your identity, and see how your identity compares to others around the world.
+          </b-list-group-item>
+        </b-list-group>
+      </b-col>
+
+      <b-col></b-col>
+
+    </b-row>
 
   </div>
 
@@ -59,10 +54,10 @@
     },
     computed: {
       loginStyle () {
-        return store.state.isLoggedIn ? 'info' : 'danger'
+        return store.state.isLoggedIn ? 'light' : 'success'
       },
       playStyle () {
-        return store.state.isLoggedIn ? 'danger' : 'info'
+        return store.state.isLoggedIn ? 'success' : 'default'
       }
     }
   }

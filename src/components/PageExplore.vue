@@ -20,6 +20,8 @@
 <script>
   import similarity from 'compute-cosine-similarity'
 
+  import { store } from '../services/store'
+
   import PageExploreGraph from './PageExploreGraph.vue'
 
   export default {
@@ -33,6 +35,9 @@
         identitiesLeft: [],
         identitiesRight: []
       }
+    },
+    created () {
+      store.clearAlert()
     },
     computed: {
       cosineSimilarity: function () {
