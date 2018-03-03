@@ -3,7 +3,7 @@ const axios = require('axios')
 
 // General Utilities
 const urlRoot = (process.env.NODE_ENV == 'production')
-  ? 'http://api.talmud.ai/'
+  ? 'https://api.talmud.ai/'
   : 'http://localhost:3000/'
 
 function getHeader () {
