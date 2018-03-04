@@ -2,9 +2,14 @@ const axios = require('axios')
 
 
 // General Utilities
+const debug = process.env.NODE_ENV != 'production'
 const urlRoot = (process.env.NODE_ENV == 'production')
   ? 'https://api.talmud.ai/'
   : 'http://localhost:3000/'
+
+function log(data) {
+  if (debug) console.log(data)
+}
 
 function getHeader () {
   return {
@@ -16,17 +21,17 @@ function getHeader () {
 }
 
 function getJsonP (path) {
-  console.log('getting ' + path)
+  log('getting ' + path)
   return axios.get(urlRoot + path)
-    .catch(error => { console.log(error); throw error })
-    .then(res => { console.log(res); return res.data })
+    .catch(error => { log(error); throw error })
+    .then(res => { log(res); return res.data })
 }
 
 function postJsonP (path, data) {
-  console.log('posting ' + path + ' with ' + JSON.stringify(data))
+  log('posting ' + path + ' with ' + JSON.stringify(data))
   return axios.post(urlRoot + path, data, getHeader())
-    .catch(error => {console.log(error); throw error })
-    .then(res => { console.log(res); return res.data })
+    .catch(error => { log(error); throw error })
+    .then(res => { log(res); return res.data })
 }
 
 // Identity and Preference Methods
