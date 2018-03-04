@@ -12,7 +12,7 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "8", "name" : "Child", "pivot" : "gender" },
   { "id" : "9", "name" : "Spouse", "pivot" : "gender" },
 
-  { "id" : "10", "name" : "Progressive" },
+  { "id" : "10", "name" : "Liberal" },
   { "id" : "11", "name" : "Conservative" },
 
   { "id" : "12", "name" : "Patriot" },
@@ -20,9 +20,6 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
 
   { "id" : "14", "name" : "Friend" },
   { "id" : "15", "name" : "Colleague" },
-
-  // { "id" : "18", "name" : "Materialist" },
-  // { "id" : "19", "name" : "Idealist" },
 ]
 
 const malePivots = new Map([
