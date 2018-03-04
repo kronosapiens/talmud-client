@@ -87,10 +87,11 @@
   export default {
     name: 'page-explore-graph',
     components: { d3Network },
+    props: ['initialSelected'],
     data () {
       return {
         title: 'exploreGraph',
-        exploreSelected: 'world',
+        exploreSelected: this.initialSelected,
         exploreOptions: [
           { text: 'Me', value: 'me' },
           { text: 'World', value: 'world' },

@@ -6,11 +6,17 @@
 
     <b-row>
       <b-col lg="6">
-        <PageExploreGraph v-model="identitiesLeft"></PageExploreGraph>
+        <PageExploreGraph
+          v-model="identitiesLeft"
+          v-bind:initialSelected="leftInitialSelected"
+          ></PageExploreGraph>
       </b-col>
 
       <b-col lg="6">
-        <PageExploreGraph v-model="identitiesRight"></PageExploreGraph>
+        <PageExploreGraph
+          v-model="identitiesRight"
+          initialSelected="world"
+          ></PageExploreGraph>
       </b-col>
     </b-row>
 
@@ -49,6 +55,9 @@
         else
           var score = 0
         return Math.round(score * 1000) / 1000
+      },
+      leftInitialSelected: function () {
+        return store.state.isLoggedIn ? 'me' : 'world'
       }
     }
   }
