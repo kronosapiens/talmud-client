@@ -49,7 +49,6 @@
       cosineSimilarity: function () {
         let left = this.identitiesLeft
         let right = this.identitiesRight
-        console.log([left, right])
         if ((left.length > 0) & (left.length == right.length))
           var score = similarity(left, right)
         else

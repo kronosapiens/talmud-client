@@ -205,7 +205,6 @@
         let eigenlistAll = new Array(
           Math.max(...this.allIdentities.map(el => parseInt(el.id))) + 1
           ).fill(0.0)
-        console.log("list length", eigenlistAll.length)
         eigenlist.forEach(el => eigenlistAll[parseInt(el.id)] = el.value)
         return eigenlistAll
       },
