@@ -70,10 +70,10 @@
 
 <script>
   import d3Network from 'vue-d3-network'
-  import zipcodes from 'zipcodes'
 
   import { fetchPreferences } from '../services/server'
   import { identities } from '../services/identities'
+  import { zipcodes } from '../services/zipcodes'
   import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
   import { store } from '../services/store'
@@ -131,7 +131,7 @@
         this.allLinks.map(link => {
           let zip = link.zip
           if (zip) {
-            let city = zipcodes.lookup(zip).city
+            let city = zipcodes[zip][0]
             zipMap.set(city, zip)
           }
         })
