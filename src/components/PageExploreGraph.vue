@@ -133,7 +133,8 @@
           let zip = link.zip
           if (zip) {
             let city = zipcodes[zip][0]
-            zipMap.set(city, zip)
+            let zipSet = zipMap.get(city) || new Set()
+            zipMap.set(city, zipSet.add(zip))
           }
         })
         return zipMap
@@ -170,8 +171,8 @@
           this.renderLinks(links)
 
         } else if (selected == 'city') {
-          let zip = this.zipMap.get(this.dropdownSelected)
-          let links = this.allLinks.filter(link => link.zip == zip)
+          let zipMap = this.zipMap.get(this.dropdownSelected)
+          let links = this.allLinks.filter(link => zipMap.has(link.zip))
           this.renderLinks(links)
 
         } else {
