@@ -159,7 +159,7 @@
             let links = this.allLinks.filter(link => link.uid == user.id)
             this.renderLinks(links)
           } else {
-            store.setAlert('Must log in to view!')
+            store.setAlertDanger('Must log in to view!')
           }
 
         } else if (selected == 'world') {

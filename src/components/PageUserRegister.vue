@@ -105,13 +105,13 @@
           alert('Passwords must match!')
         } else {
           submitRegistration(this.form)
-            .catch(error => store.setAlert('Something went wrong :('))
+            .catch(error => store.setAlertDanger('Something went wrong :('))
             .then(data => {
               if (data.jwt) {
                 store.handleLogin(data.jwt)
-                store.setAlert('Registration success! 🙏')
+                store.setAlertSuccess('Registration success! 🙏')
               } else {
-                store.setAlert(data.text + ' :(')
+                store.setAlertDanger(data.text + ' :(')
               }
             })
           this.$router.push('/')

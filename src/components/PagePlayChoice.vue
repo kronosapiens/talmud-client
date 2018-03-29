@@ -78,8 +78,8 @@
         this.winner = this.loser = '...'
         if (store.state.isLoggedIn) {
           submitPreference(winner.id, loser.id)
-            .then(data => store.setAlert('Preference saved successfully!'))
-            .catch(error => store.setAlert('Preference save failed...'))
+            .then(data => store.setAlertSuccess('Preference saved successfully!'))
+            .catch(error => store.setAlertDanger('Preference save failed...'))
         } else {
           alert("Must log in to play!")
         }

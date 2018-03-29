@@ -72,13 +72,13 @@
     methods: {
       onSubmit (event) {
         submitUpdate(this.form)
-          .catch(error => store.setAlert('Something went wrong :('))
+          .catch(error => store.setAlertDanger('Something went wrong :('))
           .then(data => {
             if (data.jwt) {
               store.handleLogin(data.jwt)
-              store.setAlert('Information updated! 🙏')
+              store.setAlertSuccess('Information updated! 🙏')
             } else {
-              store.setAlert(data.text + ' :(')
+              store.setAlertDanger(data.text + ' :(')
             }
           })
         this.$router.push('/')

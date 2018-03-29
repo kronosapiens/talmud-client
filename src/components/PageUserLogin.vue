@@ -45,13 +45,13 @@
       onSubmit (event) {
         event.preventDefault()
         submitLogin(this.form)
-          .catch(error => store.setAlert('Something went wrong :('))
+          .catch(error => store.setAlertDanger('Something went wrong :('))
           .then(data => {
             if (data.jwt) {
               store.handleLogin(data.jwt)
-              store.setAlert('Login success! 🙏')
+              store.setAlertSuccess('Login success! 🙏')
             } else {
-              store.setAlert(data.text + ' :(')
+              store.setAlertDanger(data.text + ' :(')
             }
           })
         this.$router.push('/')

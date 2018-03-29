@@ -73,7 +73,7 @@
           submitPreference(winner.id, loser.id)
             .then(data => {
               this.resetOptions()
-              store.setAlert('Preference saved successfully!')
+              store.setAlertSuccess('Preference saved successfully!')
             })
         } else {
           alert("Must log in to play!")

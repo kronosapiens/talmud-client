@@ -14,14 +14,23 @@ const store = {
   state: {
     isLoggedIn: false,
     alert: '📖',
+    alertVariant: 'info'
   },
-  setAlert (newValue) {
-    if (this.debug) console.log('setAlert triggered with', newValue)
-    this.state.alert = newValue
+  setAlert (alert, variant = 'info') {
+    if (this.debug) console.log('setAlert triggered with', alert)
+    this.state.alert = alert
+    this.state.alertVariant = variant
+  },
+  setAlertSuccess (alert) {
+    this.setAlert(alert, 'success')
+  },
+  setAlertDanger (alert) {
+    this.setAlert(alert, 'danger')
   },
   clearAlert () {
     if (this.debug) console.log('clearAlert triggered')
     this.state.alert = '📖'
+    this.state.alertVariant = 'info'
   },
   handleLogin (jwt) {
     if (this.debug) console.log('Logging in!')
