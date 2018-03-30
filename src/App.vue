@@ -3,7 +3,7 @@
 
     <BarNav/>
 
-    <b-alert v-bind:variant="sharedState.alertVariant" show>{{ sharedState.alert }}</b-alert>
+    <b-alert v-bind:variant="sharedState.alertVariant" show><span v-html="sharedState.alert"></span></b-alert>
 
     <router-view></router-view>
 

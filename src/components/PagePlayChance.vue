@@ -56,6 +56,7 @@
         title: 'PlayerChance',
         alpha: {},
         beta: {},
+        numVotes: 0,
       }
     },
     methods: {
@@ -74,6 +75,7 @@
             .then(data => {
               this.resetOptions()
               store.setAlertSuccess('Preference saved successfully!')
+              this.$emit('input', this.numVotes += 1)
             })
         } else {
           alert("Must log in to play!")

@@ -62,6 +62,7 @@
         title: 'PlayerChoice',
         winner: '...',
         loser: '...',
+        numVotes: 0,
       }
     },
     methods: {
@@ -75,10 +76,13 @@
       submitPreference: function () {
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
-        this.winner = this.loser = '...'
         if (store.state.isLoggedIn) {
           submitPreference(winner.id, loser.id)
-            .then(data => store.setAlertSuccess('Preference saved successfully!'))
+            .then(data => {
+              this.winner = this.loser = '...'
+              store.setAlertSuccess('Preference saved successfully!')
+              this.$emit('input', this.numVotes += 1)
+            })
             .catch(error => store.setAlertDanger('Preference save failed...'))
         } else {
           alert("Must log in to play!")

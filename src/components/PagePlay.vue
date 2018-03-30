@@ -18,12 +18,22 @@
       Play Talmud by choosing which identity is more important to you. You can play as much as you like (the more the better).
     </p>
 
-    <p>~~~</p>
+    <p>{{ exploreNudge }}</p>
 
-    <PagePlayChance v-if="playSelected == 'Chance'" v-bind:identities="identities"></PagePlayChance>
-    <PagePlayChoice v-else v-bind:identities="identities"></PagePlayChoice>
+    <PagePlayChance
+      v-if="playSelected == 'Chance'"
+      v-bind:identities="identities"
+      v-model="numVotes"
+      ></PagePlayChance>
+
+    <PagePlayChoice
+      v-else
+      v-bind:identities="identities"
+      v-model="numVotes"
+      ></PagePlayChoice>
 
   </div>
+
 </template>
 
 <script>
@@ -45,7 +55,8 @@
         title: 'Player',
         identities: [],
         playSelected: 'Chance',
-        playOptions: ['Chance', 'Choice']
+        playOptions: ['Chance', 'Choice'],
+        numVotes: 0,
       }
     },
     created () {
@@ -75,6 +86,16 @@
             return el
           })
         }
+      }
+    },
+    computed: {
+      exploreNudge: function () {
+        if (this.numVotes > (process.env.NUM_EXPLORE_PUSH || 7)) {
+          this.$router.push('/explore')
+        } else if (this.numVotes > (process.env.NUM_EXPLORE_ALERT || 3)) {
+          store.setAlert('Great job! Time to <strong>explore</strong>.')
+        }
+        return '~~~'
       }
     }
   }
