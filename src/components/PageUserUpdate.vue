@@ -77,11 +77,11 @@
             if (data.jwt) {
               store.handleLogin(data.jwt)
               store.setAlertSuccess('Information updated! 🙏')
+              this.$router.push('/')
             } else {
               store.setAlertDanger(data.text + ' :(')
             }
           })
-        this.$router.push('/')
       }
     }
   }

@@ -110,11 +110,11 @@
               if (data.jwt) {
                 store.handleLogin(data.jwt)
                 store.setAlertSuccess('Registration success! 🙏')
+                this.$router.push('/')
               } else {
                 store.setAlertDanger(data.text + ' :(')
               }
             })
-          this.$router.push('/')
         }
       }
     }
