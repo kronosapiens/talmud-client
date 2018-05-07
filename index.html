@@ -6,7 +6,25 @@
     <title>Talmud</title>
   </head>
   <body>
+
+    <!-- Load App -->
     <div id="app"></div>
     <script src="dist/build.js"></script>
+
+    <!-- Load Autotrack -->
+	<script>
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-50441403-2', 'auto')
+
+	ga('require', 'cleanUrlTracker')
+	ga('require', 'outboundFormTracker')
+	ga('require', 'outboundLinkTracker')
+	ga('require', 'urlChangeTracker')
+
+	ga('send', 'pageview')
+	</script>
+	<script async src="https://www.google-analytics.com/analytics.js"></script>
+	<script async src="dist/autotrack.js"></script>
+
   </body>
 </html>
