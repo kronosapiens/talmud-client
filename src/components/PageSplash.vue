@@ -13,11 +13,9 @@
       To get started:
     </p>
 
-    <b-row>
+    <b-row class="justify-content-center">
 
-      <b-col></b-col>
-
-      <b-col sm="6">
+      <b-col lg="6">
         <b-list-group>
           <b-list-group-item v-bind:variant="loginStyle" v-bind:to="'login'">
             1. <strong>Sign in</strong>, giving us a little demographic info so we can give you an optimal experience.
@@ -32,8 +30,6 @@
           </b-list-group-item>
         </b-list-group>
       </b-col>
-
-      <b-col></b-col>
 
     </b-row>
 

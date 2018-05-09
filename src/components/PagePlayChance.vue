@@ -1,11 +1,9 @@
 <template>
   <div>
 
-    <b-row>
+    <b-row class="justify-content-center">
 
-      <b-col></b-col>
-
-      <b-col sm="3">
+      <b-col md="5" lg="3">
         <b-btn
           variant="success"
           class="btn-luck"
@@ -15,7 +13,7 @@
 
       <br><br><br><br><br>
 
-      <b-col sm="3">
+      <b-col md="5" lg="3">
         <b-btn
           variant="success"
           class="btn-luck"
@@ -23,12 +21,9 @@
           v-on:click="betaWinner">{{ beta.name }}</b-btn>
       </b-col>
 
-      <b-col></b-col>
-
     </b-row>
       
-    <b-row>
-      <b-col></b-col>
+    <b-row class="justify-content-center">
       
       <b-col sm="2">
       <hr>
@@ -37,7 +32,6 @@
           v-on:click="resetOptions">Unsure!</b-btn> 
       </b-col>
 
-      <b-col></b-col>
     </b-row>
 
   </div>

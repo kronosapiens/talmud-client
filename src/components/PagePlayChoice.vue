@@ -1,9 +1,7 @@
 <template>
   <div>
 
-    <b-row>
-
-      <b-col></b-col>
+    <b-row class="justify-content-center">
 
       <b-col sm="4">
         <b-btn
@@ -39,8 +37,6 @@
         <br><br>
         <h3>~</h3>
       </b-col>
-
-      <b-col></b-col>
 
     </b-row>
 

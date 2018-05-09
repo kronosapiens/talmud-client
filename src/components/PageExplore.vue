@@ -4,7 +4,7 @@
 
     <h5>Similarity score: {{ cosineSimilarity }}</h5>
 
-    <b-row>
+    <b-row no-gutters>
       <b-col lg="6">
         <PageExploreGraph
           v-model="identitiesLeft"

@@ -2,23 +2,19 @@
   <div>
     <h2>{{ title }}</h2>
 
-    <b-row v-if="sharedState.isLoggedIn">
-      <b-col></b-col>
+    <b-row class="justify-content-center" v-if="sharedState.isLoggedIn">
       <b-col cols="4">
         <PageUserUpdate/>
       </b-col>
-      <b-col></b-col>
     </b-row>
 
-    <b-row v-else>
-      <b-col></b-col>
+    <b-row class="justify-content-center" v-else>
       <b-col cols="4">
         <PageUserRegister/>
       </b-col>
       <b-col cols="4">
         <PageUserLogin/>
       </b-col>
-      <b-col></b-col>
     </b-row>
 
   </div>

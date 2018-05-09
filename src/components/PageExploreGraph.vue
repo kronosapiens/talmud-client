@@ -1,21 +1,24 @@
 <template>
   <div>
 
-    <b-row>
-      <b-col></b-col>
-      <b-col sm="6">
+    <b-form-row>
+      <b-col cols="auto"></b-col> <!-- Add small margin -->
 
-        <p>n = {{ n }}</p>
-        <b-form-group>
+      <b-col cols="auto">
+        <b-btn variant="outline-info" size="xl" disabled>{{ n }}</b-btn>
+      </b-col>
+
+      <b-col>
         <b-form-radio-group
           buttons
           button-variant="outline-info"
-          size="lg"
+          size="md"
           v-model="exploreSelected"
           v-bind:options="exploreOptions"
           />
-        </b-form-group>
+      </b-col>
 
+      <b-col>
         <b-form-select
           class="mb-3"
           v-model="dropdownSelected"
@@ -23,13 +26,14 @@
           v-bind:style="dropdownStyle"
           >
         </b-form-select>
-
       </b-col>
-      <b-col></b-col>
-    </b-row>
 
-    <b-row class="graph-box">
-      <b-col sm="8">
+      <b-col cols="auto"></b-col> <!-- Add small margin -->
+    </b-form-row>
+
+
+    <b-row class="graph-box" no-gutters>
+      <b-col md="6" lg="7" xl="8">
         <d3-network
           ref='net'
           v-bind:net-nodes="graphNodes"
@@ -56,7 +60,7 @@
         </svg>
       </b-col>
 
-      <b-col sm="4">
+      <b-col md="6" lg="5" xl="4">
         <b-table
           striped hover
           v-bind:items="tableIdentities"
@@ -99,7 +103,7 @@
           { text: 'US City', value: 'city' }
         ],
         dropdownSelected: '',
-        tableFields: ['name', 'importance'],
+        tableFields: ['name', 'share'],
         allLinks: [],
         allIdentities: [],
         tableIdentities: [],
@@ -192,7 +196,7 @@
               id: identity.id,
               name: identity.name,
               value: value,
-              importance: (Math.round(value * 1000) / 10).toString() + '%',
+              share: (Math.round(value * 1000) / 10).toString() + '%',
             }
         }).sort((a, b) => b.value - a.value)
 
