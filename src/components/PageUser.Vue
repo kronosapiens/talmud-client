@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
 
     <b-row class="justify-content-center" v-if="sharedState.isLoggedIn">
       <b-col cols="4">

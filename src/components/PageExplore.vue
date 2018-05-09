@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
 
     <h5>Similarity score: {{ cosineSimilarity }}</h5>
 

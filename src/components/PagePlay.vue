@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
-
-    <br>
 
     <b-form-group>
       <b-form-radio-group

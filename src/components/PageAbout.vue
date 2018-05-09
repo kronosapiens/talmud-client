@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
 
     <p>
       Talmud is a collaborative art project, using math and philosophy to explore our sense of self and other.
