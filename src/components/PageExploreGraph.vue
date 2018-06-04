@@ -36,8 +36,8 @@
       <b-col md="6" lg="7" xl="8">
         <d3-network
           ref='net'
-          v-bind:net-nodes="graphNodes"
-          v-bind:net-links="graphLinks"
+          v-bind:net-nodes="graphNodesDisplay"
+          v-bind:net-links="graphLinksDisplay"
           v-bind:options="graphOptions"
           v-bind:link-cb="lcb"
           v-bind:node-cb="ncb"
@@ -63,9 +63,15 @@
       <b-col md="6" lg="5" xl="4">
         <b-table
           striped hover
-          v-bind:items="tableIdentities"
+          v-bind:items="tableNodes"
           v-bind:fields="tableFields"
-          ></b-table>
+          >
+          <template slot="name" slot-scope="row">
+            <b-button size="sm" v-on:click="toggleIdentity" v-bind:variant="row.item.style">
+             {{ row.item.name }}
+            </b-button>
+          </template>
+        </b-table>
       </b-col>
 
     </b-row>
@@ -106,7 +112,7 @@
         tableFields: ['name', 'share'],
         allLinks: [],
         allIdentities: [],
-        tableIdentities: [],
+        tableNodes: [],
         graphNodes: [],
         graphLinks: [],
         graphOptions: graphOptions,
@@ -114,6 +120,15 @@
       }
     },
     computed: {
+      graphLinksDisplay: function () {
+        let activeNodes = new Set(this.tableNodes.filter(el => el.active).map(el => el.id))
+        return this.graphLinks.filter(link => activeNodes.has(link.tid))
+      },
+      graphNodesDisplay: function () {
+        let activeNodes = new Set([])
+        this.graphLinksDisplay.map(link => { activeNodes.add(link.sid); activeNodes.add(link.tid) })
+        return this.graphNodes.filter(el => activeNodes.has(el.id))
+      },
       dropdownStyle: function () {
         if (!['country', 'city'].includes(this.exploreSelected)) {
           return { visibility: 'hidden'}
@@ -155,6 +170,12 @@
       }
     },
     methods: {
+      toggleIdentity: function (event) {
+        let name = event.target.innerText
+        let identity = this.tableNodes.find(el => el.name == name)
+        identity.active = !identity.active
+        identity.style = identity.active ? 'success' : 'outline-success'
+      },
       renderGraph: function () {
         let selected = this.exploreSelected
         if (selected == 'me') {
@@ -197,13 +218,15 @@
               name: identity.name,
               value: value,
               share: (Math.round(value * 1000) / 10).toString() + '%',
+              active: true,
+              style: 'success',
             }
         }).sort((a, b) => b.value - a.value)
 
         this.n = links.length
         this.graphLinks = links
         this.graphNodes = eigenlist
-        this.tableIdentities = eigenlist.slice(0, 8)
+        this.tableNodes = eigenlist.slice(0, 8)
         this.$emit('input', this.expandEigenlist(eigenlist))
       },
       expandEigenlist: function (eigenlist) {
