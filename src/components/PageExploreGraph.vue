@@ -120,14 +120,16 @@
       }
     },
     computed: {
+      activeNodes: function () {
+        return new Set(this.tableNodes.filter(el => el.active).map(el => el.id))
+      },
       graphLinksDisplay: function () {
-        let activeNodes = new Set(this.tableNodes.filter(el => el.active).map(el => el.id))
-        return this.graphLinks.filter(link => activeNodes.has(link.tid))
+        return this.graphLinks.filter(link =>
+          this.activeNodes.has(link.sid) && this.activeNodes.has(link.tid)
+        )
       },
       graphNodesDisplay: function () {
-        let activeNodes = new Set([])
-        this.graphLinksDisplay.map(link => { activeNodes.add(link.sid); activeNodes.add(link.tid) })
-        return this.graphNodes.filter(el => activeNodes.has(el.id))
+        return this.graphNodes.filter(el => this.activeNodes.has(el.id))
       },
       dropdownStyle: function () {
         if (!['country', 'city'].includes(this.exploreSelected)) {
