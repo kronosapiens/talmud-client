@@ -8,6 +8,14 @@
         <b-btn variant="outline-info" size="xl" disabled>{{ n }}</b-btn>
       </b-col>
 
+      <b-col cols="auto">
+        <b-btn
+          variant="outline-info"
+          size="xl"
+          v-bind:pressed.sync="allowInteraction"
+          >+🔎</b-btn>
+      </b-col>
+
       <b-col>
         <b-form-radio-group
           buttons
@@ -67,7 +75,20 @@
           v-bind:fields="tableFields"
           >
           <template slot="name" slot-scope="row">
-            <b-button size="sm" v-on:click="toggleIdentity" v-bind:variant="row.item.style">
+            <b-button
+              v-if="allowInteraction"
+              size="sm"
+              v-bind:variant="row.item.style"
+              v-on:click="toggleIdentity"
+              >
+             {{ row.item.name }}
+            </b-button>
+            <b-button
+              v-else
+              size="sm"
+              variant="success"
+              disabled
+              >
              {{ row.item.name }}
             </b-button>
           </template>
@@ -84,7 +105,7 @@
   import { fetchPreferences } from '../services/server'
   import { identities } from '../services/identities'
   import { zipcodes } from '../services/zipcodes'
-  import { toIdentityMap, toMatrix, powerMethod } from '../services/eigenvector'
+  import { toIdentityMap, toMatrix, fromMatrix, powerMethod } from '../services/eigenvector'
   import { toIdentitySet } from '../services/eigenvector'
   import { store } from '../services/store'
 
@@ -116,6 +137,7 @@
         graphNodes: [],
         graphLinks: [],
         graphOptions: graphOptions,
+        allowInteraction: false,
         n: 0,
       }
     },
@@ -124,11 +146,17 @@
         return new Set(this.tableNodes.filter(el => el.active).map(el => el.id))
       },
       graphLinksDisplay: function () {
+        if (!this.allowInteraction)
+          return this.graphLinks
+
         return this.graphLinks.filter(link =>
           this.activeNodes.has(link.sid) && this.activeNodes.has(link.tid)
         )
       },
       graphNodesDisplay: function () {
+        if (!this.allowInteraction)
+          return this.graphNodes
+
         return this.graphNodes.filter(el => this.activeNodes.has(el.id))
       },
       dropdownStyle: function () {
@@ -169,6 +197,13 @@
       },
       dropdownSelected: function () {
         this.renderGraph()
+      },
+      allowInteraction: function () {
+        if (this.allowInteraction) {
+          store.setAlert("Interactive mode... ACTIVATE ⚡⚡⚡")
+        } else {
+          store.setAlert("Disabling interactive mode 💤")
+        }
       }
     },
     methods: {
@@ -225,10 +260,16 @@
             }
         }).sort((a, b) => b.value - a.value)
 
+        let uniqueLinks = fromMatrix(matrix)
+        uniqueLinks.forEach(link => {
+          link.sid = trueMap.get(link.sid)
+          link.tid = trueMap.get(link.tid)
+        })
+
         this.n = links.length
-        this.graphLinks = links
+        this.graphLinks = uniqueLinks
         this.graphNodes = eigenlist
-        this.tableNodes = eigenlist.slice(0, 8)
+        this.tableNodes = eigenlist.slice(0, 7)
         this.$emit('input', this.expandEigenlist(eigenlist))
       },
       expandEigenlist: function (eigenlist) {

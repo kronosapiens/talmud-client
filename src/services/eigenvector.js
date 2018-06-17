@@ -1,6 +1,6 @@
 const linAlg = require('linear-algebra')()
 
-Array.prototype.flatMap = function(lambda) { 
+Array.prototype.flatMap = function(lambda) {
     return Array.prototype.concat.apply([], this.map(lambda))
 }
 
@@ -30,6 +30,7 @@ function toIdentityMap(preferenceArray) {
   )
 }
 
+// O(preferences)
 function toMatrix(preferenceArray) { // [{alpha_id, beta_id, win_bit}]
   const idMap = toIdentityMap(preferenceArray)
   const n = idMap.size
@@ -47,11 +48,32 @@ function toMatrix(preferenceArray) { // [{alpha_id, beta_id, win_bit}]
   return matrix
 }
 
+// O(identities^2 / 2)
+function fromMatrix(preferenceMatrix) {
+  console.assert(
+    preferenceMatrix.rows === preferenceMatrix.cols,
+    'Matrix must be square!'
+  )
+  const n = preferenceMatrix.rows
+  const array = []
+  for (var i = 0; i < n; i++) {
+    for (var j = 0; j < i; j++) {
+      if (preferenceMatrix.data[i][j] > preferenceMatrix.data[j][i])
+        array.push({'sid': i, 'tid': j})
+      else if (preferenceMatrix.data[i][j] < preferenceMatrix.data[j][i])
+        array.push({'sid': j, 'tid': i})
+    }
+  }
+  return array
+}
+
+// O(n^3)-ish
 function powerMethod(matrix, d = 1, epsilon = 0.001, nIter = 1000) {
   console.assert(matrix.rows == matrix.cols, 'Matrix must be square!')
   const n = matrix.rows
 
   // Normalize matrix
+  matrix = matrix.mulEach(1) // Make copy
   matrix.data = matrix.data
     .map(row => {
       let rowSum = sum(row)
@@ -81,4 +103,5 @@ function powerMethod(matrix, d = 1, epsilon = 0.001, nIter = 1000) {
 exports.toIdentitySet = toIdentitySet
 exports.toIdentityMap = toIdentityMap
 exports.toMatrix = toMatrix
+exports.fromMatrix = fromMatrix
 exports.powerMethod = powerMethod

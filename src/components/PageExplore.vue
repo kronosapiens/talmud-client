@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    <h5>Similarity score: {{ cosineSimilarity }}</h5>
-
     <b-row no-gutters>
       <b-col lg="6">
         <PageExploreGraph
@@ -41,10 +39,7 @@
         identitiesRight: []
       }
     },
-    created () {
-      store.clearAlert()
-    },
-    computed: {
+    methods: {
       cosineSimilarity: function () {
         let left = this.identitiesLeft
         let right = this.identitiesRight
@@ -52,10 +47,21 @@
           var score = similarity(left, right)
         else
           var score = 0
-        return Math.round(score * 1000) / 1000
-      },
+        let displayScore = Math.round(score * 100) / 100
+        store.setAlert("Similarity score: " + displayScore.toString())
+      }
+    },
+    computed: {
       leftInitialSelected: function () {
         return store.state.isLoggedIn ? 'me' : 'world'
+      }
+    },
+    watch: {
+      identitiesLeft: function () {
+        this.cosineSimilarity()
+      },
+      identitiesRight: function () {
+        this.cosineSimilarity()
       }
     }
   }

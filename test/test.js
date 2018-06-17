@@ -26,6 +26,18 @@ describe('graphs.js', function() {
     })
   })
 
+  describe('#fromMatrix()', function() {
+    it('should convert a preference graph to a de-duplicated array of preferences', function() {
+      const matrix = new linAlg.Matrix([
+        [1, 0, 2],
+        [1, 1, 1],
+        [0, 1, 3]
+      ])
+      const preferences = graph.fromMatrix(matrix)
+      assert.deepEqual(preferences, [{'sid': 1, 'tid': 0}, {'sid': 0, 'tid': 2}])
+    })
+  })
+
   describe('#powerMethod()', function() {
     it('should find the principal eigenvector of the matrix', function() {
       const matrix = new linAlg.Matrix([[1, 0], [1, 0]])
