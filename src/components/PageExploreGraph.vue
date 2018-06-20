@@ -100,6 +100,7 @@
 </template>
 
 <script>
+  import countryData from 'country-data'
   import d3Network from 'vue-d3-network'
 
   import { fetchPreferences } from '../services/server'
@@ -168,7 +169,7 @@
       },
       dropdownOptions: function () {
         if (this.exploreSelected == 'country') {
-          var options = this.allLinks.map(link => link.cc)
+          var options = this.countryMap.keys()
         } else if (this.exploreSelected == 'city') {
           var options = this.zipMap.keys()
         } else {
@@ -181,12 +182,20 @@
         this.allLinks.map(link => {
           let zip = link.zip
           if (zip) {
-            let city = zipcodes[zip][0]
+            let city = zipcodes[zip] ? zipcodes[zip][0] : "Other"
             let zipSet = zipMap.get(city) || new Set()
             zipMap.set(city, zipSet.add(zip))
           }
         })
         return zipMap
+      },
+      countryMap: function () {
+        const allCountryMap = new Map(
+          countryData.countries.all.map(c => [c.alpha2, c.name])
+        )
+        return new Map(
+          this.allLinks.map(link => [allCountryMap.get(link.cc), link.cc])
+        )
       }
     },
     watch: {
@@ -231,7 +240,8 @@
           this.renderLinks(links)
 
         } else if (selected == 'country') {
-          let links = this.allLinks.filter(link => link.cc == this.dropdownSelected)
+          let cc = this.countryMap.get(this.dropdownSelected)
+          let links = this.allLinks.filter(link => link.cc == cc)
           this.renderLinks(links)
 
         } else if (selected == 'city') {
