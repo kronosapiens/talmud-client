@@ -50,5 +50,26 @@ describe('graphs.js', function() {
       assert.deepEqual(eigenvector, [.5, .5])
     })
   })
+})
 
+describe('identities.js', function() {
+  const identities = require('../src/services/identities')
+
+  it('should convert relationship status', function() {
+    const user = {relationship: "In a Relationship", gender: "Male"}
+    const role = identities.pivots["9"](user)
+    assert.equal("Boyfriend", role)
+  })
+
+  it('should convert child status, with kids', function() {
+    const user = {children: "Kids", gender: "Male"}
+    const role = identities.pivots["6"](user)
+    assert.equal("Father", role)
+  })
+
+  it('should convert child status, without kids', function() {
+    const user = {children: "No Kids", gender: "Male"}
+    const role = identities.pivots["6"](user)
+    assert.equal("", role)
+  })
 })

@@ -219,7 +219,9 @@
           let user = store.getUser()
           if (user) {
             let links = this.allLinks.filter(link => link.uid == user.id)
-            this.renderLinks(links)
+            if (links.length) {
+              this.renderLinks(links)
+            }
           } else {
             store.setAlertDanger('Must log in to view!')
           }

@@ -58,31 +58,19 @@
     },
     created () {
       store.clearAlert()
-      this.identities = this.addPivots(identities)
+      if (store.state.isLoggedIn) {
+        this.identities = this.addPivots(identities)
+      } else {
+        this.identities = identities
+      }
     },
     methods: {
       addPivots: function(identities) {
         let user = store.getUser()
-        if (!user) {
-          return identities
-        } else {
-          let malePivots = pivots.malePivots
-          let femalePivots = pivots.femalePivots
-          let identitiesCopy = JSON.parse(JSON.stringify(identities))
-          return identitiesCopy.map(el => {
-            if (el.pivot && user[el.pivot]) {
-              if (el.pivot == 'gender') {
-                let userGender = user.gender.toLowerCase()
-                if (Object.keys(pivots).includes(userGender)) {
-                  el.name = pivots[userGender].get(el.id)
-                }
-              } else {
-                el.name = user[el.pivot]
-              }
-            }
-            return el
-          })
-        }
+        let identitiesCopy = JSON.parse(JSON.stringify(identities))
+        identitiesCopy
+          .forEach(el => { el.name = el.pivot ? pivots[el.id](user) : el.name })
+        return identitiesCopy.filter(el => el.name)
       }
     },
     computed: {
