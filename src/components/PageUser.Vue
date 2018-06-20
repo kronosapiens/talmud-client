@@ -39,6 +39,9 @@
         title: 'User',
         sharedState: store.state,
       }
+    },
+    created () {
+      store.clearAlert()
     }
   }
 </script>
