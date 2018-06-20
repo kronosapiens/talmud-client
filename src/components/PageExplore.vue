@@ -5,6 +5,7 @@
       <b-col lg="6">
         <PageExploreGraph
           v-model="identitiesLeft"
+          v-bind:allLinks="allLinks"
           v-bind:initialSelected="leftInitialSelected"
           ></PageExploreGraph>
       </b-col>
@@ -12,6 +13,7 @@
       <b-col lg="6">
         <PageExploreGraph
           v-model="identitiesRight"
+          v-bind:allLinks="allLinks"
           initialSelected="world"
           ></PageExploreGraph>
       </b-col>
@@ -23,6 +25,8 @@
 <script>
   import similarity from 'compute-cosine-similarity'
 
+  import { identities } from '../services/identities'
+  import { fetchPreferences } from '../services/server'
   import { store } from '../services/store'
 
   import PageExploreGraph from './PageExploreGraph.vue'
@@ -35,6 +39,7 @@
     data () {
       return {
         title: 'Explorer',
+        allLinks: [],
         identitiesLeft: [],
         identitiesRight: []
       }
@@ -63,6 +68,16 @@
       identitiesRight: function () {
         this.cosineSimilarity()
       }
+    },
+    created () {
+      let idSet = new Set(identities.map(el => el.id))
+      store.setAlert("Fetching preference graph...")
+      fetchPreferences()
+        .then(preferences => {
+          store.setAlertSuccess("Fetch successful!")
+          this.allLinks = preferences.links // [{sid, tid, ...}]
+            .filter(link => idSet.has(link.sid) && idSet.has(link.tid))
+        })
     }
   }
 </script>

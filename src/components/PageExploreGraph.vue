@@ -103,12 +103,16 @@
   import countryData from 'country-data'
   import d3Network from 'vue-d3-network'
 
-  import { fetchPreferences } from '../services/server'
+  import {
+    toIdentityMap,
+    toIdentitySet,
+    toMatrix,
+    fromMatrix,
+    powerMethod
+  } from '../services/eigenvector'
   import { identities } from '../services/identities'
-  import { zipcodes } from '../services/zipcodes'
-  import { toIdentityMap, toMatrix, fromMatrix, powerMethod } from '../services/eigenvector'
-  import { toIdentitySet } from '../services/eigenvector'
   import { store } from '../services/store'
+  import { zipcodes } from '../services/zipcodes'
 
   const graphOptions = {
     force: 3000,
@@ -119,7 +123,7 @@
   export default {
     name: 'page-explore-graph',
     components: { d3Network },
-    props: ['initialSelected'],
+    props: ['initialSelected', 'allLinks'],
     data () {
       return {
         title: 'exploreGraph',
@@ -132,8 +136,6 @@
         ],
         dropdownSelected: '',
         tableFields: ['name', 'share'],
-        allLinks: [],
-        allIdentities: [],
         tableNodes: [],
         graphNodes: [],
         graphLinks: [],
@@ -199,6 +201,9 @@
       }
     },
     watch: {
+      allLinks: function () {
+        this.renderGraph()
+      },
       exploreSelected: function () {
         if (['me', 'world'].includes(this.exploreSelected)) {
           this.renderGraph()
@@ -261,7 +266,7 @@
         toIdentityMap(links).forEach((v, k) => trueMap.set(v, k))
 
         let eigenlist = eigenvector.map((value, ix) => {
-          let identity = this.allIdentities.find(el => el.id == trueMap.get(ix))
+          let identity = identities.find(el => el.id == trueMap.get(ix))
           return {
               id: identity.id,
               name: identity.name,
@@ -286,7 +291,7 @@
       },
       expandEigenlist: function (eigenlist) {
         let eigenlistAll = new Array(
-          Math.max(...this.allIdentities.map(el => parseInt(el.id))) + 1
+          Math.max(...identities.map(el => parseInt(el.id))) + 1
           ).fill(0.0)
         eigenlist.forEach(el => eigenlistAll[parseInt(el.id)] = el.value)
         return eigenlistAll
@@ -299,16 +304,6 @@
         node._size = 6 + Math.sqrt(800 * node.value)
         return node
       },
-    },
-    created () {
-      this.allIdentities = identities
-      let idSet = new Set(identities.map(el => el.id))
-      fetchPreferences()
-        .then(preferences => {
-          this.allLinks = preferences.links // [{sid, tid, ...}]
-            .filter(link => idSet.has(link.sid) && idSet.has(link.tid))
-          this.renderGraph()
-        })
     }
   }
 </script>
