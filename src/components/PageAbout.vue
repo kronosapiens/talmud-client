@@ -49,6 +49,7 @@
 </template>
 
 <script>
+  import { store } from '../services/store'
 
   export default {
     name: 'page-about',
@@ -56,6 +57,9 @@
       return {
         title: 'About'
       }
+    },
+    created () {
+      store.clearAlert()
     }
   }
 </script>
