@@ -64,6 +64,7 @@
           alert('Passwords must match!')
         } else {
           Object.assign(this.form, this.demographicsForm) // Combine forms
+          store.setAlertSecondary("Submitting registration...")
           submitRegistration(this.form)
             .catch(error => store.setAlertDanger('Something went wrong :('))
             .then(data => {

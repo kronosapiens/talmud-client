@@ -71,7 +71,7 @@
     },
     created () {
       let idSet = new Set(identities.map(el => el.id))
-      store.setAlert("Fetching preference graph...")
+      store.setAlertSecondary("Fetching preference graph...")
       fetchPreferences()
         .then(preferences => {
           store.setAlertSuccess("Fetch successful!")

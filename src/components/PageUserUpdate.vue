@@ -31,6 +31,8 @@
     },
     methods: {
       onSubmit (event) {
+        event.preventDefault()
+        store.setAlertSecondary("Submitting update...")
         submitUpdate(this.form)
           .catch(error => store.setAlertDanger('Something went wrong :('))
           .then(data => {

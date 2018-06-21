@@ -24,6 +24,9 @@ const store = {
   setAlertSuccess (alert) {
     this.setAlert(alert, 'success')
   },
+  setAlertSecondary (alert) {
+    this.setAlert(alert, 'secondary')
+  },
   setAlertDanger (alert) {
     this.setAlert(alert, 'danger')
   },
