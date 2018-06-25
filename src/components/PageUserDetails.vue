@@ -48,6 +48,12 @@
           v-model="form.job"
           placeholder="Professional identity (i.e. Teacher, Artist, Doctor)">
         </b-form-input>
+
+        <br>
+        <b-form-input type="text"
+          v-model="form.party"
+          placeholder="Political identity (i.e. Conservative, Liberal, Moderate)">
+        </b-form-input>
       </b-form-group>
 
   </div>
@@ -73,6 +79,7 @@
           religion: '',
           ethnicity: '',
           job: '',
+          party: '',
         },
         genderOptions: ['Female', 'Male', 'Genderqueer', 'Other Gender'],
         relationshipOptions: ['Single', 'In a Relationship', 'Married', 'It\'s Complicated'],

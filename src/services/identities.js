@@ -12,14 +12,16 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "8", "name" : "Child", "pivot" : true },
   { "id" : "9", "name" : "Partner", "pivot" : true },
 
-  { "id" : "10", "name" : "Liberal" },
-  { "id" : "11", "name" : "Conservative" },
+  // { "id" : "10", "name" : "Liberal" },
+  // { "id" : "11", "name" : "Conservative" },
 
   // { "id" : "12", "name" : "Patriot" },
   // { "id" : "13", "name" : "Radical" },
 
   { "id" : "14", "name" : "Friend" },
   { "id" : "15", "name" : "Colleague" },
+
+  { "id" : "16", "name" : "Partisan", "pivot" : true },
 ]
 
 exports.pivots = {
@@ -62,5 +64,8 @@ exports.pivots = {
       else if (user.gender === "Female") return "Girlfriend"
       else return "Partner"
     } else return ""
-  }
+  },
+  "16": function(user) {
+    return user.party
+  },
 }
