@@ -5,7 +5,9 @@
       <b-col cols="auto"></b-col> <!-- Add small margin -->
 
       <b-col cols="auto">
-        <b-btn variant="outline-info" size="xl" disabled>{{ n }}</b-btn>
+        <div v-b-tooltip.hover title="Num preferences">
+          <b-btn variant="outline-info" size="xl" disabled>{{ n }}</b-btn>
+        </div>
       </b-col>
 
       <b-col cols="auto">
