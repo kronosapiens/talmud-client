@@ -24,13 +24,13 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
 
 exports.pivots = {
   "2": function(user) {
-    return user.religion ? user.religion : "Religion"
+    return user.religion
   },
   "3": function(user) {
-    return user.ethnicity ? user.ethnicity : "Ethnicity"
+    return user.ethnicity
   },
   "4": function(user) {
-    return user.job ? user.job : "Profession"
+    return user.job
   },
   "5": function(user) {
     return user.gender
