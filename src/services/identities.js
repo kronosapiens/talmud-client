@@ -21,8 +21,14 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "14", "name" : "Friend" },
   { "id" : "15", "name" : "Colleague" },
 
-  { "id" : "16", "name" : "Partisan", "pivot" : true },
-  { "id" : "17", "name" : "National", "pivot" : true },
+  // { "id" : "16", "name" : "Spiritual" },
+  // { "id" : "17", "name" : "Athiest" },
+
+  // { "id" : "18", "name" : "Materialist" },
+  // { "id" : "19", "name" : "Idealist" },
+
+  { "id" : "20", "name" : "Partisan", "pivot" : true },
+  { "id" : "21", "name" : "National", "pivot" : true },
 ]
 
 exports.pivots = {
@@ -66,10 +72,10 @@ exports.pivots = {
       else return "Partner"
     } else return ""
   },
-  "16": function(user) {
+  "20": function(user) {
     return user.party
   },
-  "17": function(user) {
+  "21": function(user) {
     return demonyms[user.cc] ? demonyms[user.cc] : ""
   }
 }
