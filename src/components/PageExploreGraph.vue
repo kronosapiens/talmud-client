@@ -112,7 +112,7 @@
   } from '../services/eigenvector'
   import { identities } from '../services/identities'
   import { store } from '../services/store'
-  import { zipcodes } from '../services/zipcodes'
+  import { states, zipcodes } from '../services/zipcodes'
 
   const graphOptions = {
     force: 3000,
@@ -132,7 +132,7 @@
           { text: 'Me', value: 'me' },
           { text: 'World', value: 'world' },
           { text: 'Country', value: 'country' },
-          { text: 'US City', value: 'city' }
+          { text: 'US State', value: 'state' }
         ],
         dropdownSelected: '',
         tableFields: ['name', 'share'],
@@ -163,7 +163,7 @@
         return this.graphNodes.filter(el => this.activeNodes.has(el.id))
       },
       dropdownStyle: function () {
-        if (!['country', 'city'].includes(this.exploreSelected)) {
+        if (!['country', 'state'].includes(this.exploreSelected)) {
           return { visibility: 'hidden'}
         } else {
           return {}
@@ -172,7 +172,7 @@
       dropdownOptions: function () {
         if (this.exploreSelected == 'country') {
           var options = this.countryMap.keys()
-        } else if (this.exploreSelected == 'city') {
+        } else if (this.exploreSelected == 'state') {
           var options = this.zipMap.keys()
         } else {
           var options = []
@@ -184,9 +184,10 @@
         this.allLinks.map(link => {
           let zip = link.zip
           if (zip) {
-            let city = zipcodes[zip] ? zipcodes[zip][0] : "Other"
-            let zipSet = zipMap.get(city) || new Set()
-            zipMap.set(city, zipSet.add(zip))
+            let stateAbbr = zipcodes[zip] ? zipcodes[zip] : "Other"
+            let state = states[stateAbbr] ? states[stateAbbr] : stateAbbr
+            let zipSet = zipMap.get(state) || new Set()
+            zipMap.set(state, zipSet.add(zip))
           }
         })
         return zipMap
@@ -249,7 +250,7 @@
           let links = this.allLinks.filter(link => link.cc == cc)
           this.renderLinks(links)
 
-        } else if (selected == 'city') {
+        } else if (selected == 'state') {
           let zipMap = this.zipMap.get(this.dropdownSelected)
           let links = this.allLinks.filter(link => zipMap.has(link.zip))
           this.renderLinks(links)
