@@ -2,9 +2,9 @@ exports.identities = [ // TODO: revert id to int once graph is patched.
   { "id" : "0", "name" : "Human" },
   { "id" : "1", "name" : "Animal" },
 
-  { "id" : "2", "name" : "Religion", "pivot" : true },
-  { "id" : "3", "name" : "Ethnicity", "pivot" : true },
-  { "id" : "4", "name" : "Profession", "pivot" : true },
+  { "id" : "2", "name" : "Congregant", "pivot" : true },
+  { "id" : "3", "name" : "Tribesperson", "pivot" : true },
+  { "id" : "4", "name" : "Professional", "pivot" : true },
 
   { "id" : "5", "name" : "Gender", "pivot" : true },
   { "id" : "6", "name" : "Parent", "pivot" : true },
