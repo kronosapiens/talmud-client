@@ -3,22 +3,27 @@
   <div>
     <h1>Welcome to Talmud!</h1>
 
-    <p>~~~</p>
+    <b-row class="justify-content-center">
+      <b-col lg="6">
+        <h6>An identity exploration game, helping you see how you define yourself.</h6>
 
-    <p>
-      Talmud is a collaborative art project, using math and philosophy to explore our sense of self and other.
+        <h7>
+          We are complex creatures, and we play many roles: "friend", "partner", "sibling". While we are <em>all</em> of these things, we are not all of them equally. If I had to choose, would I choose my sibling over my friend? My partner over my job? Do others feel the same? These are questions we rarely ask explicitly. Talmud is a game that helps you ask these questions and understand the answers.
+        </h7>
 
-      <br><br>
+        <p>~~~</p>
 
-      To get started:
-    </p>
+        <h6>To get started:</h6>
+
+      </b-col>
+    </b-row>
 
     <b-row class="justify-content-center">
 
       <b-col lg="6">
         <b-list-group>
           <b-list-group-item v-bind:variant="loginStyle" v-bind:to="'login'">
-            1. <strong>Sign in</strong>, giving us a little demographic info so we can give you an optimal experience.
+            1. <strong>Sign in</strong>, giving us some demographic info so we can give you a great experience.
           </b-list-group-item>
 
           <b-list-group-item v-bind:variant="playStyle" v-bind:to="'play'">
@@ -26,7 +31,7 @@
           </b-list-group-item>
 
           <b-list-group-item variant="default" v-bind:to="'explore'">
-            3. <strong>Explore</strong> your identity, and see how your identity compares to others around the world.
+            3. <strong>Explore</strong> your identity graph, and see how you compare to others around the world.
           </b-list-group-item>
         </b-list-group>
       </b-col>

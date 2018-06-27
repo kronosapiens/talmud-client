@@ -11,11 +11,19 @@
         />
     </b-form-group>
 
-    <p>
-      Play Talmud by choosing which identity is more important to you. You can play as much as you like (the more the better).
-    </p>
+    <b-row class="justify-content-center">
+      <b-col cols="10" lg="6">
 
-    <p>{{ exploreNudge }}</p>
+        <p>
+          Pick the identity which feels more important to you.
+          <br>
+          You can play as much as you like (the more the better).
+        </p>
+
+        <p>{{ exploreNudge }}</p>
+
+      </b-col>
+    </b-row>
 
     <PagePlayChance
       v-if="playSelected == 'Chance'"
