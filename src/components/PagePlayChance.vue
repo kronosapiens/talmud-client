@@ -65,6 +65,7 @@
       },
       handleWinner: function (winner, loser) {
         if (store.state.isLoggedIn) {
+          store.setAlertSecondary("Submitting preference...")
           submitPreference(winner.id, loser.id)
             .then(data => {
               this.resetOptions()
@@ -72,7 +73,7 @@
               this.$emit('input', this.numVotes += 1)
             })
         } else {
-          alert("Must log in to play!")
+          store.setAlertDanger('Must log in to play! ✋🏽')
         }
       },
       alphaWinner: function () {

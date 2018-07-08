@@ -66,14 +66,14 @@
           Object.assign(this.form, this.demographicsForm) // Combine forms
           store.setAlertSecondary("Submitting registration...")
           submitRegistration(this.form)
-            .catch(error => store.setAlertDanger('Something went wrong :('))
+            .catch(error => store.setAlertDanger('Something went wrong 😭'))
             .then(data => {
               if (data.jwt) {
                 store.handleLogin(data.jwt)
-                store.setAlertSuccess('Registration success! 🙏')
+                store.setAlertSuccess('Registration success! 🙏🏽')
                 this.$router.push('/')
               } else {
-                store.setAlertDanger(data.text + ' :(')
+                store.setAlertDanger(data.text + ' 😭')
               }
             })
         }

@@ -95,6 +95,7 @@
       if (user) {
         this.form = user
       }
+      this.$emit('input', this.form)
     },
     watch: {
       form: {

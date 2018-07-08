@@ -73,6 +73,7 @@
         let winner = this.identities.find(el => el.name == this.winner)
         let loser = this.identities.find(el => el.name == this.loser)
         if (store.state.isLoggedIn) {
+          store.setAlertSecondary("Submitting preference...")
           submitPreference(winner.id, loser.id)
             .then(data => {
               this.winner = this.loser = '...'
@@ -81,7 +82,7 @@
             })
             .catch(error => store.setAlertDanger('Preference save failed...'))
         } else {
-          alert("Must log in to play!")
+          store.setAlertDanger('Must log in to play! ✋🏽')
         }
       }
     }

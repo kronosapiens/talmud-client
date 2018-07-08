@@ -38,14 +38,14 @@
         event.preventDefault()
         store.setAlertSecondary("Submitting update...")
         submitUpdate(this.form)
-          .catch(error => store.setAlertDanger('Something went wrong :('))
+          .catch(error => store.setAlertDanger('Something went wrong 😭'))
           .then(data => {
             if (data.jwt) {
               store.handleLogin(data.jwt)
-              store.setAlertSuccess('Information updated! 🙏')
+              store.setAlertSuccess('Information updated! 🙏🏽')
               this.$router.push('/')
             } else {
-              store.setAlertDanger(data.text + ' :(')
+              store.setAlertDanger(data.text + ' 😭')
             }
           })
       }

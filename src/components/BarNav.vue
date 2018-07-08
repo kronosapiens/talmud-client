@@ -56,7 +56,7 @@
     methods: {
       handleLogout () {
         store.handleLogout()
-        store.setAlert('See you later! 👋')
+        store.setAlert('See you later! 👋🏽')
       }
     }
   }

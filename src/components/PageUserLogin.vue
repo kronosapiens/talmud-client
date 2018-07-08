@@ -44,15 +44,16 @@
     methods: {
       onSubmit (event) {
         event.preventDefault()
+        store.setAlertSecondary("Logging you in...")
         submitLogin(this.form)
-          .catch(error => store.setAlertDanger('Something went wrong :('))
+          .catch(error => store.setAlertDanger('Something went wrong 😭'))
           .then(data => {
             if (data.jwt) {
               store.handleLogin(data.jwt)
-              store.setAlertSuccess('Login success! 🙏')
+              store.setAlertSuccess('Login success! 🙏🏽')
               this.$router.push('/')
             } else {
-              store.setAlertDanger(data.text + ' :(')
+              store.setAlertDanger(data.text + ' 😭')
             }
           })
       }
