@@ -15,6 +15,7 @@ import PageAbout from './components/PageAbout.vue'
 import PageExplore from './components/PageExplore.vue'
 import PagePlay from './components/PagePlay.vue'
 import PageUser from './components/PageUser.vue'
+import PageUserUpdate from './components/PageUserUpdate.vue'
 import PageSplash from './components/PageSplash.vue'
 
 const routes = [
@@ -23,6 +24,7 @@ const routes = [
   { path: '/explore', component: PageExplore },
   { path: '/about', component: PageAbout },
   { path: '/login', component: PageUser },
+  { path: '/update', component: PageUserUpdate },
   { path: '*', component: Page404 }
 ]
 

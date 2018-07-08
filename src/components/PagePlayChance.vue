@@ -6,7 +6,7 @@
       <b-col md="5" lg="3">
         <b-btn
           variant="success"
-          class="btn-luck"
+          class="btn-luck mb-1"
           v-bind:block="true"
           v-on:click="alphaWinner">{{ alpha.name }}</b-btn>
       </b-col>
@@ -22,14 +22,14 @@
       </b-col>
 
     </b-row>
-      
+
     <b-row class="justify-content-center">
-      
+
       <b-col sm="2">
       <hr>
         <b-btn
           size="lg"
-          v-on:click="resetOptions">Unsure!</b-btn> 
+          v-on:click="resetOptions">Unsure!</b-btn>
       </b-col>
 
     </b-row>

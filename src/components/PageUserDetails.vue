@@ -9,7 +9,7 @@
         <b-form-input type="number"
           v-if="form.cc == 'US'"
           v-model="form.zip"
-          placeholder="Optional: for US residents, enter your ZIP">
+          placeholder="Optional: enter your ZIP">
         </b-form-input>
       </b-form-group>
 
@@ -52,7 +52,7 @@
         <br>
         <b-form-input type="text"
           v-model="form.party"
-          placeholder="Political identity (i.e. Conservative, Liberal, Moderate)">
+          placeholder="Political identity (i.e. Liberal, Moderate, Conservative)">
         </b-form-input>
       </b-form-group>
 

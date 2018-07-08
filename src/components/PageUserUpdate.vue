@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
 
-    <b-form v-on:submit="onSubmit">
+    <b-row class="justify-content-center">
+      <b-col cols="10" lg="6">
+        <h3>{{ title }}</h3>
 
-      <PageUserDetails v-model="form"></PageUserDetails>
+        <b-form v-on:submit="onSubmit">
+          <PageUserDetails v-model="form"></PageUserDetails>
+          <b-button type="submit" variant="primary">Submit</b-button>
+        </b-form>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-    </b-form>
+      </b-col>
+    </b-row>
 
   </div>
 </template>
@@ -16,7 +20,7 @@
   import { submitUpdate } from '../services/server'
   import { store } from '../services/store'
 
-    import PageUserDetails from './PageUserDetails.vue'
+  import PageUserDetails from './PageUserDetails.vue'
 
   export default {
     name: 'page-user-update',
@@ -25,7 +29,7 @@
     },
     data () {
       return {
-        title: 'UserUpdate',
+        title: 'Update',
         form: {},
       }
     },

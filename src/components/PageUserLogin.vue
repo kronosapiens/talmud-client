@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
+    <h3>{{ title }}</h3>
 
     <b-form v-on:submit="onSubmit">
 
@@ -34,7 +34,7 @@
     name: 'page-user-login',
     data () {
       return {
-        title: 'UserLogin',
+        title: 'Login',
         form: {
           email: '',
           password: '',

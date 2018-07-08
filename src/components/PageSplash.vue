@@ -1,15 +1,15 @@
 <template>
 
   <div>
-    <h1>Welcome to Talmud!</h1>
+    <h1>Welcome!</h1>
 
     <b-row class="justify-content-center">
-      <b-col lg="6">
-        <h6>An identity exploration game, helping you see how you define yourself.</h6>
+      <b-col cols="10" lg="6">
+        <h6>Talmud is a game of identities.</h6>
 
-        <h7>
-          We are complex creatures, and we play many roles: "friend", "partner", "sibling". While we are <em>all</em> of these things, we are not all of them equally. If I had to choose, would I choose my sibling over my friend? My partner over my job? Do others feel the same? These are questions we rarely ask explicitly. Talmud is a game that helps you ask these questions and understand the answers.
-        </h7>
+        <p>
+          We are complex creatures, and we play many roles: "friend", "sibling", "partner", and more. While we are <em>all</em> of these things, we are not all of them equally. If I had to choose, would I choose my sibling over my friend? My partner over my job? Do others feel the same? These are questions we rarely ask explicitly. Talmud is a game that helps you ask these questions and understand the answers.
+        </p>
 
         <p>~~~</p>
 
@@ -20,7 +20,7 @@
 
     <b-row class="justify-content-center">
 
-      <b-col lg="6">
+      <b-col cols="10" lg="6">
         <b-list-group>
           <b-list-group-item v-bind:variant="loginStyle" v-bind:to="'login'">
             1. <strong>Sign in</strong>, giving us some demographic info so we can give you a great experience.
@@ -65,9 +65,4 @@
 </script>
 
 <style scoped>
-
-p {
-  font-size:large;
-}
-
 </style>

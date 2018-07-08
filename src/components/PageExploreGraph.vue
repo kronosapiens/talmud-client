@@ -1,24 +1,23 @@
 <template>
   <div>
 
-    <b-form-row>
-      <b-col cols="auto"></b-col> <!-- Add small margin -->
+    <b-form-row class="justify-content-center">
 
-      <b-col cols="auto">
+      <b-col class="mb-2" cols="auto">
         <div v-b-tooltip.hover title="Num preferences">
-          <b-btn variant="outline-info" size="xl" disabled>{{ n }}</b-btn>
+          <b-btn variant="outline-info" size="md" disabled>{{ n }}</b-btn>
         </div>
       </b-col>
 
-      <b-col cols="auto">
+      <b-col class="mb-2" cols="auto">
         <b-btn
           variant="outline-info"
-          size="xl"
+          size="md"
           v-bind:pressed.sync="allowInteraction"
           >+🔎</b-btn>
       </b-col>
 
-      <b-col>
+      <b-col class="mb-1" cols="auto">
         <b-form-radio-group
           buttons
           button-variant="outline-info"
@@ -28,9 +27,8 @@
           />
       </b-col>
 
-      <b-col>
+      <b-col class="mb-2" cols="auto">
         <b-form-select
-          class="mb-3"
           v-model="dropdownSelected"
           v-bind:options="dropdownOptions"
           v-bind:style="dropdownStyle"
@@ -38,7 +36,6 @@
         </b-form-select>
       </b-col>
 
-      <b-col cols="auto"></b-col> <!-- Add small margin -->
     </b-form-row>
 
 

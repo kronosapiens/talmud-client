@@ -1,18 +1,20 @@
 <template>
   <div>
 
-    <b-row class="justify-content-center" v-if="sharedState.isLoggedIn">
-      <b-col cols="4">
-        <PageUserUpdate/>
-      </b-col>
-    </b-row>
+    <b-form-group>
+      <b-form-radio-group
+        buttons
+        button-variant="outline-info"
+        size="md"
+        v-model="userSelected"
+        v-bind:options="userOptions"
+        />
+    </b-form-group>
 
-    <b-row class="justify-content-center" v-else>
-      <b-col cols="4">
-        <PageUserRegister/>
-      </b-col>
-      <b-col cols="4">
-        <PageUserLogin/>
+    <b-row class="justify-content-center">
+      <b-col cols="10" lg="6">
+        <PageUserRegister v-if="userSelected == 'Register'"/>
+        <PageUserLogin v-else/>
       </b-col>
     </b-row>
 
@@ -37,6 +39,8 @@
     data () {
       return {
         title: 'User',
+        userSelected: 'Register',
+        userOptions: ['Register', 'Login'],
         sharedState: store.state,
       }
     },
