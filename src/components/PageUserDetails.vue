@@ -16,6 +16,7 @@
       <br>
       <!-- Pivots -->
       <b-form-group label="✨ Demographic Identities (optional)">
+        <p>🔒This optional information is used to customize your experience, and is encrypted with <em>your</em> password. It is not used for analytics, and no one, <em>not even us</em>, can ever see it.</p>
         <b-form-select v-model="form.gender" v-bind:options="genderOptions">
         </b-form-select>
 
@@ -62,7 +63,7 @@
 <script>
   import countryData from 'country-data'
 
-  import { store } from '../services/store'
+  import { getUser, store } from '../services/store'
 
   export default {
     name: 'page-user-details',
@@ -91,7 +92,7 @@
       }
     },
     created () {
-      let user = store.getUser()
+      let user = getUser()
       if (user) {
         this.form = user
       }

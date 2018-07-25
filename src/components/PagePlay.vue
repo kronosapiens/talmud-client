@@ -43,7 +43,7 @@
 
 <script>
 
-  import { store } from '../services/store'
+  import { getUser, store } from '../services/store'
   import { identities, pivots } from '../services/identities'
 
   import PagePlayChance from './PagePlayChance.vue'
@@ -74,7 +74,7 @@
     },
     methods: {
       addPivots: function(identities) {
-        let user = store.getUser()
+        let user = getUser()
         let identitiesCopy = JSON.parse(JSON.stringify(identities))
         identitiesCopy
           .forEach(el => { el.name = el.pivot ? pivots[el.id](user) : el.name })

@@ -110,7 +110,7 @@
     powerMethod
   } from '../services/eigenvector'
   import { identities } from '../services/identities'
-  import { store } from '../services/store'
+  import { getUser, store } from '../services/store'
   import { states, zipcodes } from '../services/zipcodes'
 
   const graphOptions = {
@@ -230,7 +230,7 @@
       renderGraph: function () {
         let selected = this.exploreSelected
         if (selected == 'me') {
-          let user = store.getUser()
+          let user = getUser()
           if (user) {
             let links = this.allLinks.filter(link => link.uid == user.id)
             if (links.length) {

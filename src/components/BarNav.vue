@@ -31,7 +31,7 @@
 
 <script>
 
-  import { store } from '../services/store'
+  import { getUser, store } from '../services/store'
 
   export default {
     name: 'bar-nav',
@@ -49,7 +49,7 @@
     computed: {
       userEmail () {
         if (this.sharedState.isLoggedIn) {
-          return store.getUser().email.split('@')[0]
+          return getUser().email.split('@')[0]
         }
       }
     },

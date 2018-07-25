@@ -28,7 +28,7 @@
 <script>
 
   import { submitLogin } from '../services/server'
-  import { store } from '../services/store'
+  import { setPasswordHash, store } from '../services/store'
 
   export default {
     name: 'page-user-login',
@@ -45,6 +45,7 @@
       onSubmit (event) {
         event.preventDefault()
         store.setAlertSecondary("Logging you in...")
+        setPasswordHash(this.form.password)
         submitLogin(this.form)
           .catch(error => store.setAlertDanger('Something went wrong 😭'))
           .then(data => {

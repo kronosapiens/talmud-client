@@ -18,7 +18,7 @@
 
 <script>
   import { submitUpdate } from '../services/server'
-  import { store } from '../services/store'
+  import { encodeUser, getPasswordHash, store } from '../services/store'
 
   import PageUserDetails from './PageUserDetails.vue'
 
@@ -37,7 +37,9 @@
       onSubmit (event) {
         event.preventDefault()
         store.setAlertSecondary("Submitting update...")
-        submitUpdate(this.form)
+        let passwordHash = getPasswordHash()
+        let encodedForm = encodeUser(this.form, passwordHash)
+        submitUpdate(encodedForm)
           .catch(error => store.setAlertDanger('Something went wrong 😭'))
           .then(data => {
             if (data.jwt) {

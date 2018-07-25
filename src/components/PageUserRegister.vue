@@ -37,7 +37,7 @@
 
 <script>
   import { submitRegistration } from '../services/server'
-  import { store } from '../services/store'
+  import { encodeUser, setPasswordHash, store } from '../services/store'
 
   import PageUserDetails from './PageUserDetails.vue'
 
@@ -64,8 +64,10 @@
           alert('Passwords must match!')
         } else {
           Object.assign(this.form, this.demographicsForm) // Combine forms
+          let passwordHash = setPasswordHash(this.form.password)
+          let encodedForm = encodeUser(this.form, passwordHash)
           store.setAlertSecondary("Submitting registration...")
-          submitRegistration(this.form)
+          submitRegistration(encodedForm)
             .catch(error => store.setAlertDanger('Something went wrong 😭'))
             .then(data => {
               if (data.jwt) {
